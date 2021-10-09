@@ -1,0 +1,11 @@
+.featured-flex{
+        div{
+            flex-basis: 50%;
+        }
+    }
+
+footer{
+    .footer-first-row{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

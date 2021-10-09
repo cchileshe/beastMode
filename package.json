@@ -1,0 +1,29 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "CSE 341 Project 2 Beast Mode",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cchileshe/beastMode.git"
+  },
+  "keywords": [
+    "BeastMode"
+  ],
+  "author": "Rio Michael Miranda and Claudia Chileshe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cchileshe/beastMode/issues"
+  },
+  "homepage": "https://github.com/cchileshe/beastMode#readme"
+}
