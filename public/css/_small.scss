@@ -25,10 +25,9 @@ header{
     .container{
     width: 90%;
     max-width: 1200px;
-    margin:0 auto;    
-    background: $mainBG;
+    margin:0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr;
     .mainlogo img{
         max-height: 81px;
     }
@@ -45,7 +44,7 @@ header{
                     font-size: 1.4em;
                     text-transform: uppercase;
                     text-decoration: none;
-                    color:$mainfontcolor;
+                    color:$fontfordark;
 
                     &:hover{
                         border-bottom: 2px solid grey;
@@ -75,9 +74,8 @@ header{
         margin-left: auto;
         margin-top:auto;
         margin-bottom: auto;
-  
         color:$fontfordark;
-        background: linear-gradient(to right,rgba(255,255,255,0) 0,rgba(232,195,70,1) 100%);
+        // background: linear-gradient(to right,rgba(255,255,255,0) 0,rgba(232,195,70,1) 100%);
         h2{
             text-align: right;
             padding:.3em;
