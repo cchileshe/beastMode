@@ -25,13 +25,31 @@ app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// ROUTES====================================>
 //const adminRoutes = require('./routes/admin');
 const beastRoutes = require('./routes/beast');
+const clientRoutes = require('./routes/client');
 //const authRoutes = require('./routes/auth');
+
+
+
+// CONTROLLER===============================>
+const errorController = require('./controllers/errors');
+
+
+
+
 
 //app.use('/admin', adminRoutes);
 app.use(beastRoutes);
+app.use('/user', clientRoutes);
 //app.use(authRoutes);
+
+
+
+
+app.use(errorController.get404);
 
 
 app.listen(process.env.PORT || 5000);

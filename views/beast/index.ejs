@@ -1,26 +1,43 @@
 <%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./js/bootstrap.min.js">
+<link rel="stylesheet" type="text/css" href="/css/main.min.css" />
 
 
 <body>
   
 
     <main>
-
+        
+        <header>
         <section class="hero-banner">
             <%- include('../includes/nav.ejs') %>
+                <div class="hero-banner-container">
 
-            <div class="hero-banner-content">
-                <h2>unlesh the <br>
-                <span class="highlight">beast</span> within
-                </h2>
-                <br>
-                <hr>
-                <p class="highlightText">Start now and get a <span class="hightlight2"> free session </span> on your account.</p>
-            </div>
-                
+                    <div class="hero-banner-form">
+                        <div class="container">
+                        <form class="banner-form">
+                            <input type="text" class="form-control" id="search" placeholder="What are you looking for?">    
+                            <input type="text" class="form-control" id="name" placeholder="Name">      
+                            <input type="email" class="form-control" id="email" placeholder="Email">
+                            <input type="date" class="form-control" id="startdate" placeholder="Start Date">
+                            
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        </div>
+                    </div>
 
+                    <div class="hero-banner-content">
+                        <h2>unlesh the <br>
+                        <span class="highlight">beast</span> within
+                        </h2>
+                        <br>
+                        <hr>
+                        <p class="highlightText">Start now and get a <span class="hightlight2"> free session </span> on your account.</p>
+                    </div>
+                </div>    
         </section>
-
+    </header>
 
 
 
