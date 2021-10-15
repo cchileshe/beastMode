@@ -58,6 +58,7 @@ a#getStarted{
     font-variant: small-caps;
     letter-spacing: 0.1em;
     font-weight: 300;
+    text-decoration: none;
 }
 
 
@@ -103,6 +104,9 @@ a#getStarted{
       
 
         form{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
             background: $mainBG;
             padding: 2em;
             width: 80%;

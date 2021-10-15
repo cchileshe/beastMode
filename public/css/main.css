@@ -20,9 +20,18 @@ section {
   border-color: #9c8357;
 }
 
-.form-control:focus {
+.form-control input:focus {
   border-color: #9c8357;
-  box-shadow: 0 0 0 0.25rem rgba(156, 131, 87, 0.25);
+  box-shadow: rgba(156, 131, 87, 0.25) 0px 0px 0px 0.25rem;
+}
+
+input.form-input:focus {
+  border-color: #9c8357;
+  box-shadow: rgba(156, 131, 87, 0.25) 0px 0px 0px 0.25rem;
+}
+
+input.form-input {
+  border-color: #9c8357;
 }
 
 .container {
@@ -43,16 +52,6 @@ header .container {
   grid-template-columns: auto 1fr;
 }
 
-/*===============================================
-                    NAV
-================================================*/
-.navbar-light .navbar-brand {
-	color: #fff;
-	font-size: 25px;
-	text-transform: uppercase;
-	font-weight: bold;
-	letter-spacing: 2px;
-}                    
 header .container .mainlogo img {
   max-height: 81px;
 }
@@ -118,9 +117,15 @@ header .container nav ul li a:hover {
   margin-block-end: 0em;
 }
 
+.signup {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .form-control {
   display: grid;
   border: none;
+  height: auto;
 }
 
 .form-control input {
@@ -195,6 +200,24 @@ footer .footer-second-row {
   font-size: .8em;
 }
 
+.navbar a.navbar-brand, .navbar-nav li.nav-item a.nav-link {
+  color: #ffffff;
+}
+
+.navbar a.navbar-brand:hover {
+  color: #ffffff;
+}
+
+.navbar-nav li.nav-item.active a.nav-link {
+  color: #9c8357;
+  border-bottom: 2px solid #9c8357;
+}
+
+.navbar-nav li.nav-item a.nav-link:hover {
+  border-bottom: 2px solid #9c8357;
+  color: #9c8357;
+}
+
 @media only screen and (min-width: 37.5em) {
   /* ======================================================
                     GENERAL
@@ -244,6 +267,7 @@ footer .footer-second-row {
     font-variant: small-caps;
     letter-spacing: 0.1em;
     font-weight: 300;
+    text-decoration: none;
   }
   .hero-banner .container .mainlogo img {
     max-height: 81px;
@@ -287,6 +311,9 @@ footer .footer-second-row {
     justify-content: center;
   }
   .hero-banner-form .container form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     background: #ffffff;
     padding: 2em;
     width: 80%;

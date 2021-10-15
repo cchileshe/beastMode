@@ -25,12 +25,21 @@ section{
     border-color: $mainfontcolorhover;
 }
 
-.form-control:focus {
+.form-control input:focus {
     border-color: $mainfontcolorhover;
-    box-shadow: 0 0 0 0.25rem rgba(156, 131, 87, .25);
-   
-
+    box-shadow: rgba(156, 131, 87, 0.25) 0px 0px 0px 0.25rem;
 }
+
+
+input.form-input:focus{
+    border-color: $mainfontcolorhover;
+    box-shadow: rgba(156, 131, 87, 0.25) 0px 0px 0px 0.25rem;
+}
+
+input.form-input{
+    border-color: $mainfontcolorhover;
+}
+
 
 
 
@@ -120,9 +129,15 @@ header{
 }
 
 
+.signup{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .form-control{
     display: grid;
     border: none;
+    height: auto;
 
     input{
         margin-bottom: 1em;
@@ -168,3 +183,23 @@ footer{
     .footer-second-row{padding:3em 0em;text-align:center;font-size:.8em}
 }
 
+
+
+//overwrite color for navigation
+.navbar a.navbar-brand, .navbar-nav li.nav-item a.nav-link{
+    color:$fontfordark;
+}
+
+.navbar a.navbar-brand:hover{
+    color:$fontfordark;
+}
+
+.navbar-nav li.nav-item.active a.nav-link{
+    color:$mainfontcolorhover;
+    border-bottom: 2px solid $mainfontcolorhover;
+}
+
+.navbar-nav li.nav-item a.nav-link:hover{
+    border-bottom: 2px solid $mainfontcolorhover;
+    color:$mainfontcolorhover;
+}
