@@ -3,9 +3,6 @@ const router = express.Router();
 const beastController = require('../controllers/beast');
 
 
-
-
-
 router.get('/', beastController.getIndex);
 
 

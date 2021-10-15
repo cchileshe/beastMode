@@ -8,9 +8,6 @@ router.use('/css', express.static(path.join('node_modules/bootstrap/dist/css')))
 router.use('/js', express.static(path.join('node_modules/bootstrap/dist/js')))
 
 
-
-
-
 router.get('/sign-up', clientController.getIndex);
 
 
