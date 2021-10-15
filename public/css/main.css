@@ -43,6 +43,16 @@ header .container {
   grid-template-columns: auto 1fr;
 }
 
+/*===============================================
+                    NAV
+================================================*/
+.navbar-light .navbar-brand {
+	color: #fff;
+	font-size: 25px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 2px;
+}                    
 header .container .mainlogo img {
   max-height: 81px;
 }
