@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //const adminRoutes = require('./routes/admin');
 const beastRoutes = require('./routes/beast');
 const clientRoutes = require('./routes/client');
+const trainerRoutes = require('./routes/trainer');
 //const authRoutes = require('./routes/auth');
 
 
@@ -51,6 +52,7 @@ const errorController = require('./controllers/errors');
 //app.use('/admin', adminRoutes);
 app.use(beastRoutes);
 app.use('/user', clientRoutes);
+app.use('/trainer', trainerRoutes);
 //app.use(authRoutes);
 
 
