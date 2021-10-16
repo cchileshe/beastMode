@@ -1,11 +1,15 @@
-const User = require('../models/user');
+const Trainer = require('../models/trainer');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
+
+
+
+
 exports.getSignup = (req, res, next) => {
-    res.render('client/signupClient', {
-      pageTitle: 'Signup Client',
-      path: '/user/sign-up',
+    res.render('trainer/signupTrainer', {
+      pageTitle: 'Signup trainer',
+      path: '/trainer/sign-up',
       hasError: false,
       errorMessage: null,
       validationErrors: []
@@ -14,9 +18,9 @@ exports.getSignup = (req, res, next) => {
 
 
 exports.getProfile = (req, res, next) => {
-  res.render('client/profile', {
+  res.render('trainer/profile', {
     pageTitle: 'Welcome',
-    path: '/user/registered',
+    path: '/trainer/registered',
     
   });
 };
@@ -35,11 +39,11 @@ exports.postRegister = (req, res, next) => {
 
   if (!errors.isEmpty()) {
     console.log("empty",errors.array());
-    return res.status(422).render('client/signupClient', {
+    return res.status(422).render('trainer/signuptrainer', {
       pageTitle: 'Sign Up',
-      path: '/user/sign-up',
+      path: '/trainer/sign-up',
       hasError: true,
-      user: {
+      trainer: {
         fname: fname,
         lname: lname,
         address: address,
@@ -51,23 +55,24 @@ exports.postRegister = (req, res, next) => {
     });
   }
 
+
   bcrypt
   .hash(password, 12)
   .then(hashedPassword => {
-  const user= new User({
+  const trainer = new Trainer({
     fname: fname,
     lname: lname,
     address: address,
     email: email,
     password: hashedPassword
   });
-  user
+  trainer
     .save()
   })
     .then(result => {
       // console.log(result);
-      console.log('User Registered');
-      res.redirect('/user/registered');
+      console.log('Trainer Registered');
+      res.redirect('/trainer/registered');
     })
     .catch(err => {
       const error = new Error(err);
