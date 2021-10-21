@@ -1,18 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const clientController = require('../controllers/client.js');
+const clientController = require('../controllers/client');
 const path = require('path');
 const { body } = require('express-validator');
+const isAuth = require('../middleware/is-auth');
+
+
 
 router.use('/css', express.static(path.join('node_modules/bootstrap/dist/css')))
 router.use('/js', express.static(path.join('node_modules/bootstrap/dist/js')))
 
 
 
+router.get('/login', clientController.getLogin);
+
+router.post('/login', clientController.postLogin);
+
+router.get('/account', clientController.getDashboard);
 
 
 router.get('/sign-up', clientController.getSignup);
-router.get('/registered', clientController.getProfile);
+router.get('/registered',isAuth, clientController.getProfile);
+
 
 router.post(
     '/registered',
@@ -31,8 +40,7 @@ router.post(
         .trim(),
     body('email')
         .isEmail()
-        .withMessage('Please enter a valid email address.')
-        .normalizeEmail(),
+        .withMessage('Please enter a valid email address.'),
     body('password', 'Password has to be valid.')
       .isLength({ min: 5 })
       .isAlphanumeric()

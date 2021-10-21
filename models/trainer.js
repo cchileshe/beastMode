@@ -23,6 +23,10 @@ const trainerSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  ulevel: {
+    type: String,
+    default:'trainer'
   }
 });
 

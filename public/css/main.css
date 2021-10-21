@@ -146,9 +146,10 @@ header .container nav ul li a:hover {
   border: 1px solid red;
   background: #ffb0b0;
   color: red;
-  width: 30rem;
+  max-width: 30rem;
   display: block;
   margin: auto;
+  margin-bottom: 1em;
   padding: 0.5rem;
   border-radius: 3px;
   text-align: center;
