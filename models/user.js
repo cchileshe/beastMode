@@ -23,6 +23,10 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  ulevel: {
+    type: String,
+    default:'client'
   }
 });
 

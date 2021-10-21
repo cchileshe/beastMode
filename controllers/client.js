@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
 exports.getSignup = (req, res, next) => {
+  if (!req.session.isLoggedIn) {
     res.render('client/signupClient', {
       pageTitle: 'Signup Client',
       path: '/user/sign-up',
@@ -10,6 +11,9 @@ exports.getSignup = (req, res, next) => {
       errorMessage: null,
       validationErrors: []
     });
+  }else{
+    res.redirect('/user/account')
+  }
 };
 
 
@@ -20,6 +24,117 @@ exports.getProfile = (req, res, next) => {
     
   });
 };
+
+
+exports.getDashboard = (req, res, next) => {
+    if (req.session.isLoggedIn && req.session.isUser ==="client") {
+      
+      res.render('client/dashboard', {
+        pageTitle: 'My Account',
+        path: '/user/account',
+    });
+  }else{
+    res.redirect('/user/login')
+  }
+};
+
+
+
+exports.getLogin = (req, res, next) => {
+   
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+  res.render('client/login', {
+    path: '/user/login',
+    pageTitle: 'Login',
+    errorMessage: message,
+    oldInput: {
+      email: '',
+      password: ''
+    },
+    validationErrors: []
+  });
+};
+
+exports.postLogin = (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  const errors = validationResult(req);
+
+  
+  if (!errors.isEmpty()) {
+    return res.status(422).render('client/login', {
+      path: '/user/login',
+      pageTitle: 'Login',
+      errorMessage: errors.array()[0].msg,
+      oldInput: {
+        email: email,
+        password: password
+      },
+      validationErrors: errors.array()
+    });
+  }
+
+  User.findOne({ email: email })
+    .then(user => {
+      if (!user) {
+        return res.status(422).render('client/login', {
+          path: '/user/login',
+          pageTitle: 'Login',
+          errorMessage: 'Invalid email or password.',
+          oldInput: {
+            email: email,
+            password: password
+          },
+          validationErrors: []
+        });
+      }
+      bcrypt
+        .compare(password, user.password)
+        .then(doMatch => {
+          if (doMatch) {
+
+            if(user.ulevel==="client"){ 
+                req.session.isLoggedIn = true;
+                req.session.isUser= 'client';
+                req.session.user = user;
+                
+                return req.session.save(err => {
+                  console.log(err);
+                  res.redirect('/user/account');
+                });
+          }
+
+          }
+          return res.status(422).render('client/login', {
+            path: 'user/login',
+            pageTitle: 'Login',
+            errorMessage: 'Invalid email or password.',
+            oldInput: {
+              email: email,
+              password: password
+            },
+            validationErrors: []
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          res.redirect('/');
+        });
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};
+
+
 
 
 

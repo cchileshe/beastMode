@@ -1,0 +1,32 @@
+<%- include('../includes/head.ejs') %>
+
+
+<body>
+  
+
+    <main>
+
+    <ul>
+        <li class="main-header__item">
+            <form action="/logout" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button type="submit">Logout</button>
+            </form>
+        </li>
+    </ul>
+
+
+    <section>
+ 
+            <div class="container mb-3">
+               <h1>WELCOME to Dashboard Client</h1>
+            </div>
+    </section>
+
+
+    </main>
+
+
+
+
+<%- include('../includes/footer.ejs') %>

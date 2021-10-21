@@ -162,9 +162,10 @@ header{
 border: 1px solid red;
 background: rgb(255, 176, 176);
 color: red;
-width: 30rem;
+max-width: 30rem;
 display: block;
 margin: auto;
+margin-bottom: 1em;
 padding: 0.5rem;
 border-radius: 3px;
 text-align: center;

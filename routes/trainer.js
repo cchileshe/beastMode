@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const trainerController = require('../controllers/trainer');
+const trainerController = require('../controllers/trainer.js');
 const path = require('path');
 const { body } = require('express-validator');
-
-
+const isAuth = require('../middleware/is-auth');
 
 
 
@@ -12,8 +11,17 @@ router.use('/css', express.static(path.join('node_modules/bootstrap/dist/css')))
 router.use('/js', express.static(path.join('node_modules/bootstrap/dist/js')))
 
 
-router.get('/sign-up', trainerController.getSignup);
-router.get('/registered', trainerController.getProfile);
+
+router.get('/login', trainerController.getLogin);
+
+router.post('/login', trainerController.postLogin);
+
+router.get('/account', trainerController.getDashboard);
+
+
+router.get('/sign-up',isAuth, trainerController.getSignup);
+router.get('/registered',isAuth, trainerController.getProfile);
+
 
 router.post(
     '/registered',
@@ -21,28 +29,23 @@ router.post(
       body('fname')
         .isString()
         .isLength({ min: 2 })
-        .withMessage('Enter your First Name')
         .trim(),
     body('lname')
         .isString()
         .isLength({ min: 2 })
-        .withMessage('Enter your Last Name')
         .trim(),
     body('address')
         .isString()
         .isLength({ min: 2 })
-        .withMessage('Enter your Address')
         .trim(),
     body('email')
         .isEmail()
-        .withMessage('Please enter a valid email address.')
-        .normalizeEmail(),
-   body('password',
-            'Please enter a password with only numbers and text and at least 5 characters.')
-            .isLength({ min: 5 })
-            .isAlphanumeric()
-            .trim(),
-   body('confirmPassword')
+        .withMessage('Please enter a valid email address.'),
+    body('password', 'Password has to be valid.')
+      .isLength({ min: 5 })
+      .isAlphanumeric()
+      .trim(),
+    body('confirmPassword')
       .trim()
       .custom((value, { req }) => {
         if (value !== req.body.password) {
@@ -50,7 +53,7 @@ router.post(
         }
         return true;
       })
-
+      
     ],
     trainerController.postRegister
   );

@@ -11,31 +11,56 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-
 /**Addding bootstrap to File */
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')))
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')))
 
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 /**addinng MongoDB URL */
 const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://cse341proj:sud3kcF52tEhZpAq@cluster0.foyzr.mongodb.net/beastmode?retryWrites=true&w=majority"
+
+
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+const store = new MongoDBStore({
+  uri: MONGODB_URL,
+  collection: 'sessions'
+});
+const csrfProtection = csrf();
+
+app.use(
+  session({
+    secret: 'my secret',
+    resave: false,
+    saveUninitialized: false,
+    store: store
+  })
+);
+
+app.use(csrfProtection);
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
 
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 // ROUTES====================================>
-//const adminRoutes = require('./routes/admin');
-const beastRoutes = require('./routes/beast');
+const genRoutes = require('./routes/general');
 const clientRoutes = require('./routes/client');
 const trainerRoutes = require('./routes/trainer');
 //const authRoutes = require('./routes/auth');
@@ -49,8 +74,7 @@ const errorController = require('./controllers/errors');
 
 
 
-//app.use('/admin', adminRoutes);
-app.use(beastRoutes);
+app.use(genRoutes);
 app.use('/user', clientRoutes);
 app.use('/trainer', trainerRoutes);
 //app.use(authRoutes);
