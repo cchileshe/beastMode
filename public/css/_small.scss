@@ -33,11 +33,14 @@ section{
 
 input.form-input:focus{
     border-color: $mainfontcolorhover;
+    border:solid 1px;padding:.5em;
     box-shadow: rgba(156, 131, 87, 0.25) 0px 0px 0px 0.25rem;
 }
 
 input.form-input{
     border-color: $mainfontcolorhover;
+    border:solid 1px;
+    padding:.5em;
 }
 
 
