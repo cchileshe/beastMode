@@ -23,6 +23,17 @@ router.get('/sign-up', clientController.getSignup);
 router.get('/registered',isAuth, clientController.getProfile);
 
 
+
+router.get('/manage-account/:clientid', clientController.manageAccount);
+
+router.post('/account', clientController.updateAccount); //this is for saving manage-account
+
+
+
+
+
+
+
 router.post(
     '/registered',
     [

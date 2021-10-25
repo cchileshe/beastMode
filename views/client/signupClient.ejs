@@ -19,7 +19,7 @@
                 <% if (errorMessage) { %>
                     <div class="message-error"><%= errorMessage %></div>
                 <% } %>
-                <form action="/user/registered" method="POST" class="signup">
+                <form action="/user/<% if (editing) { %>account<% } else { %>registered<% } %>" method="POST" class="signup">
                     <div class="form-control">
                     <label for="fname">First Name</label>
                     <input
@@ -27,11 +27,8 @@
                     type="text" 
                     name="fname" 
                     id="fname"
-                    value="<% if (hasError) { %><%= user.fname %><% } %>">
+                    value="<% if (hasError) { %><%= user.fname %><% } else if (editing) { %><%= user.fname %><% } %>">
                     </div>
-
-
-
                     <div class="form-control">
                         <label for="lname">Last Name</label>
                         <input 
@@ -39,7 +36,7 @@
                         name="lname" 
                         id="lname"
                         class="<%= validationErrors.find(e => e.param === 'lname') ? 'invalid' : '' %>"
-                        value="<% if (hasError) { %><%= user.lname %><% } %>">
+                        value="<% if (hasError) { %><%= user.lname %><% } else if (editing) { %><%= user.lname %><% }%>">
 
                     </div>
 
@@ -50,7 +47,7 @@
                         name="address" 
                         id="address"
                         class="<%= validationErrors.find(e => e.param === 'address') ? 'invalid' : '' %>"
-                        value="<% if (hasError) { %><%= user.address %><% } %>">
+                        value="<% if (hasError) { %><%= user.address %><% } else if (editing) { %><%= user.address %><% } %>">
                     </div>    
 
                     <div class="form-control">
@@ -59,7 +56,7 @@
                         name="email"
                         id="email"
                         class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
-                        value="<% if (hasError) { %><%= user.email %><% } %>">
+                        value="<% if (hasError) { %><%= user.email %><% } else if (editing) { %><%= user.email %><% } %>">
                     </div> 
 
 
@@ -80,6 +77,10 @@
                         class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"
                         value="<% if (hasError) { %><%= user.confirmPassword %><% } %>">
                     </div> 
+
+                    <% if (editing) { %>
+                        <input type="hidden" value="<%= user._id %>" name="userId">
+                    <% } %>
 
 
                     <div class="form-control">
