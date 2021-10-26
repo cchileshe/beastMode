@@ -8,7 +8,9 @@ body {
 section {
   margin-bottom: 3em;
 }
-
+/* section p{
+  color: #747e80;
+} */
 .btn-primary {
   background: #9c8357;
   border-color: #9c8357;
@@ -19,6 +21,109 @@ section {
   background: #7b6845;
   border-color: #9c8357;
 }
+
+/* ======================================================
+                    NAVIGATION
+========================================================*/
+
+
+.hero-banner .container .mainlogo img {
+  max-height: 81px;
+}
+.hero-banner .container nav {
+  text-align: right;
+}
+.main-nav nav ul {
+  padding: 1em;
+}
+.main-nav nav ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 0 1em 0em 1em;
+}
+.main-nav nav ul li a {
+  font-size: 1.2em;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  font-variant: small-caps;
+  text-decoration: none;
+  color: #ffffff;
+}
+.main-nav nav ul li a:hover {
+  border-bottom: 2px solid #555555;
+  color: #9c8357;
+} 
+
+a#getStarted {
+  border-radius: 10px;
+  background-color: #663399;
+  border: none;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  font-family: "Raleway";
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+  text-decoration: none;
+}
+/* ======================================================
+                    HERO BANNER
+========================================================*/
+.hero-banner {
+  display: flex;
+  height: 80vh;
+  background: url("/asset/rope.jpg");
+  background-size: cover;
+  background-position: top;
+  transition: border-radius 0.3s, opacity 0.3s;
+  flex-direction: column;
+}
+
+/* .hero-banner .hero-banner-content {
+  max-width: 500px;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #ffffff;
+  /*background:linear-gradient(to right, rgba(255,255,255,0) 0, #e8c346 100%)
+}
+
+.hero-banner .hero-banner-content h2 {
+  text-align: left;
+  padding: .3em;
+  font-size: 2.5em;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+.signup {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-control {
+  display: grid;
+  border: none;
+  height: auto;
+}
+
+.form-control input {
+  margin-bottom: 1em;
+}
+
+.form-control button[type=submit] {
+  text-align: center;
+  width: 70%;
+  display: block;
+  margin: auto;
+} */
 
 /* ===========================
             hero form
@@ -56,6 +161,81 @@ section {
   input.form-input::placeholder{
     padding-left: 2.5em;
   }
+
+
+
+  /* ===========================
+            features
+  ========================= */
+
+  
+ .headerh2{
+    text-align: center;
+    font-weight: 600;
+  }
+  #features h3, #howitworks h3{
+    font-size: 22px;
+    color: #303234;
+    font-weight: 600;
+  }
+
+#features p {
+    text-align: center;
+    padding-left:2em;
+    padding-right: 2em;
+    line-height: 2em;
+    padding-top: 1.5em;
+  }
+.col-md-4{
+   
+   text-align: center;
+}
+
+div.spacing{
+  padding:5em;
+  padding-bottom: 2em;
+}
+#howitworks{
+  margin-top: 5em;
+}
+
+  /* ===========================
+        TESTIMONTIONALS
+  ============================== */
+
+  #testimonials{
+    background-color: #666666;
+    padding-top: 4em;
+    padding-bottom: 3em;
+  }
+  #testimonials h2{
+    color:#ffffff;
+  }
+  div.testimonial-header{
+    display: inline;
+    width: 100%;
+    color:#ffffff;
+  
+  }
+  .testimonial-name{
+    padding-left: .5em;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px ;
+  }
+  div.testimonial-text{
+    margin-top: 1em;
+    color: #cbcbcb;
+    letter-spacing: .5px ;
+
+  }
+  /* .testimonial-name, .testimonial-header img{
+    float: left;
+  } */
+
+
+
 /* .form-control input:focus {
   border-color: #9c8357;
   box-shadow: rgba(156, 131, 87, 0.25) 0px 0px 0px 0.25rem;
@@ -116,113 +296,13 @@ header .container nav ul li a:hover {
   color: #9c8357;
 }  */
 
-/* ======================================================
-                    NAVIGATION
-========================================================*/
 
 
-  .hero-banner .container .mainlogo img {
-    max-height: 81px;
-  }
-  .hero-banner .container nav {
-    text-align: right;
-  }
-  .main-nav nav ul {
-    padding: 1em;
-  }
-  .main-nav nav ul li {
-    list-style: none;
-    display: inline-block;
-    padding: 0 1em 0em 1em;
-  }
-  .main-nav nav ul li a {
-    font-size: 1.2em;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    font-variant: small-caps;
-    text-decoration: none;
-    color: #ffffff;
-  }
-  .main-nav nav ul li a:hover {
-    border-bottom: 2px solid #555555;
-    color: #9c8357;
-  } 
-
-  a#getStarted {
-    border-radius: 10px;
-    background-color: #663399;
-    border: none;
-    color: #ffffff;
-    padding: 10px;
-    text-align: center;
-    font-size: 1.2em;
-    font-family: "Raleway";
-    font-variant: small-caps;
-    letter-spacing: 0.1em;
-    font-weight: 300;
-    text-decoration: none;
-  }
-/* ======================================================
-                    HERO BANNER
-========================================================*/
-.hero-banner {
-  display: flex;
-  height: 80vh;
-  background: url("/asset/rope.jpg");
-  background-size: cover;
-  background-position: top;
-  transition: border-radius 0.3s, opacity 0.3s;
-  flex-direction: column;
-}
-
-/* .hero-banner .hero-banner-content {
-  max-width: 500px;
-  width: 100%;
-  text-transform: uppercase;
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-  margin-left: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  color: #ffffff;
-  /*background:linear-gradient(to right, rgba(255,255,255,0) 0, #e8c346 100%)
-}
-
-.hero-banner .hero-banner-content h2 {
-  text-align: left;
-  padding: .3em;
-  font-size: 2.5em;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
-}
-
-.signup {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.form-control {
-  display: grid;
-  border: none;
-  height: auto;
-}
-
-.form-control input {
-  margin-bottom: 1em;
-}
-
-.form-control button[type=submit] {
-  text-align: center;
-  width: 70%;
-  display: block;
-  margin: auto;
-} */
 
 /* ======================================================
                     ERROR
 ========================================================*/
-/* .message-error {
+ .message-error {
   border: 1px solid red;
   background: #ffb0b0;
   color: red;
@@ -243,7 +323,7 @@ input.invalid {
 /* ======================================================
                     FOOTER
 ========================================================*/
-/* footer {
+ footer {
   background: #1b1b1b;
   color: #ffffff;
   padding: 2em 0em;
@@ -317,12 +397,16 @@ footer .footer-second-row {
 .navbar-nav li.nav-item a.nav-link:hover {
   border-bottom: 2px solid #9c8357;
   color: #9c8357;
-} */
+} 
 
 @media only screen and (min-width: 37.5em) {
   /* ======================================================
                     GENERAL
 ========================================================*/
+.highlight {
+  color: #9c8357;
+  font-weight: 600;
+}
   /* body {
     font-family: "Raleway";
     font-size: 14px;
@@ -338,9 +422,7 @@ footer .footer-second-row {
   ul {
     padding-inline-start: 0px;
   }
-  .highlight {
-    color: #9c8357;
-  }
+  
   .highlight2 {
     font-weight: 600;
   }
