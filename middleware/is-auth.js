@@ -11,3 +11,12 @@ module.exports = (req, res, next) => {
 
     next();
 }
+
+
+
+module.exports.loginUser = (req, res, next) => {
+    if (req.session.isLoggedIn && req.session.isUser ==="client") {
+        return res.redirect('/user/account');
+    }
+    next();
+}

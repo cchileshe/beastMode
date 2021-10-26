@@ -12,21 +12,53 @@ router.use('/js', express.static(path.join('node_modules/bootstrap/dist/js')))
 
 
 
-router.get('/login', clientController.getLogin);
+router.get('/login', isAuth.loginUser, clientController.getLogin);
 
-router.post('/login', clientController.postLogin);
+router.post('/login', isAuth.loginUser,clientController.postLogin);
 
-router.get('/account', clientController.getDashboard);
+router.get('/account', isAuth.loginUser,clientController.getDashboard);
 
 
-router.get('/sign-up', clientController.getSignup);
+router.get('/sign-up',isAuth.loginUser, clientController.getSignup);
 router.get('/registered',isAuth, clientController.getProfile);
 
 
 
-router.get('/manage-account/:clientid', clientController.manageAccount);
+router.get('/manage-account/:clientid',isAuth.loginUser, clientController.manageAccount);
 
-router.post('/account', clientController.updateAccount); //this is for saving manage-account
+router.post('/account', [
+    body('fname')
+        .isString()
+        .isLength({ min: 2 })
+        .trim()
+        .withMessage('Please enter First Name'),
+    body('lname')
+        .isString()
+        .isLength({ min: 2 })
+        .trim()
+        .withMessage('Please enter Last Name'),
+    body('address')
+        .isString()
+        .isLength({ min: 2 })
+        .trim()
+        .withMessage('Please enter a valid address.'),
+    body('email')
+        .isEmail()
+        .withMessage('Please enter a valid email address.'),
+    body('password', 'Password has to be valid.')
+      .isLength({ min: 5 })
+      .isAlphanumeric()
+      .trim(),
+    body('confirmPassword')
+      .trim()
+      .custom((value, { req }) => {
+        if (value !== req.body.password) {
+          throw new Error('Passwords Did not Match');
+        }
+        return true;
+      })  
+
+],clientController.updateAccount); 
 
 
 
@@ -40,15 +72,18 @@ router.post(
       body('fname')
         .isString()
         .isLength({ min: 2 })
-        .trim(),
+        .trim()
+        .withMessage('Please enter First Name'),
     body('lname')
         .isString()
         .isLength({ min: 2 })
-        .trim(),
+        .trim()
+        .withMessage('Please enter Last Name'),
     body('address')
         .isString()
         .isLength({ min: 2 })
-        .trim(),
+        .trim()
+        .withMessage('Please enter a valid address.'),
     body('email')
         .isEmail()
         .withMessage('Please enter a valid email address.'),
@@ -65,9 +100,7 @@ router.post(
         return true;
       })
       
-    ],
-    clientController.postRegister
-  );
+    ],clientController.postRegister);
 
 
 module.exports = router;

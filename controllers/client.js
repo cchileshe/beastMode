@@ -47,7 +47,7 @@ exports.manageAccount = (req, res, next) => {
 
 
 exports.updateAccount = (req, res, next) => {
-
+  
   const userId = req.body.userId
   const fname = req.body.fname;
   const lname = req.body.lname;
@@ -59,16 +59,19 @@ exports.updateAccount = (req, res, next) => {
   if (!errors.isEmpty()) {
     console.log("empty",errors.array());
     return res.status(422).render('client/signupClient', {
-      pageTitle: 'Sign Up',
-      path: '/user/sign-up',
+      pageTitle: 'Update Account',
+      path: '/user/manage-account/account?edit=true',
       hasError: true,
       user: {
         fname: fname,
         lname: lname,
         address: address,
         email: email,
-        password: password
+        password: password,
+        _id:userId
+
       },
+      editing:true,
       errorMessage: errors.array()[0].msg,
       validationErrors: errors.array()
     });
