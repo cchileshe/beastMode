@@ -12,6 +12,7 @@
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <button type="submit">Logout</button>
             </form>
+            <a href="/user/manage-account/account?edit=true">Update Account</a>
         </li>
     </ul>
 
@@ -19,11 +20,9 @@
     <section>
  
             <div class="container mb-3">
-               <h1>WELCOME to Dashboard Client</h1>
+               <h1>WELCOME to Dashboard Client <%= user.fname %> </h1>
             </div>
     </section>
-
-
     </main>
 
 
