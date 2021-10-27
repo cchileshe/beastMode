@@ -16,14 +16,26 @@ router.get('/login', isAuth.loginUser, clientController.getLogin);
 router.post('/login', clientController.postLogin);
 
 
+
+
 router.get('/trainer-list',isAuth.loginUser,  clientController.trainerList);
+router.post('/enroll', clientController.postEnroll);
+
+
+
+router.get('/mytrainer',isAuth.loginUser,  clientController.mytrainer);
+router.get('/trainings/:clientid',isAuth.loginUser,  clientController.trainings);
+router.get('/appointment/:clientid',isAuth.loginUser,  clientController.appointment);
+router.get('/send-note/:clientid',isAuth.loginUser,  clientController.sendNote);
+
+
 
 
 
 router.get('/sign-up',isAuth.loginUser, clientController.getSignup);
 router.get('/registered',isAuth, clientController.getProfile);
 
-router.post('/enroll', clientController.postEnroll);
+
 
 
 router.get('/manage-account/:clientid',isAuth.loginUser, clientController.manageAccount);

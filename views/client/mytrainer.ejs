@@ -28,14 +28,24 @@
 
             <% for (let x=0; x<trainers.length; x++) { %>
 
+                
                 <% if(trainersMarked.includes(trainers[x]._id.toString())){ %>  
-                    <li><%= trainers[x].fname %> <%= trainers[x].lname %> - enrolled</li>
-                <% } else { %>
-                    <li><%= trainers[x].fname %> <%= trainers[x].lname %> <%- include('../includes/enroll', {trainer: trainers[x]}) %></li>
-                <% } %>                         
+                    <div class="card">
+                    <%= trainers[x].fname %> <%= trainers[x].lname %>
+                        <div class="row">
+                            <a href="/user/trainings/<%= trainers[x]._id %>">View Trainings</a>
+                             <a href="/user/appointment/<%= trainers[x]._id %>">>Set Appointment</a>
+                             <a href="/user/send-note/<%= trainers[x]._id %>">Send a Note</a>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+
+                 <% } %>
                 
             <% } %>
-            </ul>
+
+            
 
 
     </section>
