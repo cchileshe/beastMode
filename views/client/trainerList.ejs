@@ -1,0 +1,78 @@
+<%- include('../includes/head.ejs') %>
+
+
+<body>
+  
+
+    <main>
+
+    <ul>
+        <li class="main-header__item">
+            <form action="/logout" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button type="submit">Logout</button>
+            </form>    
+        </li>
+
+        <li class="main-header__item">
+        <a href="/user/manage-account/account?edit=true">Update Account</a>
+        </li>
+
+        <li class="main-header__item">
+            <a href="#">Trainer List</a>
+        </li>
+
+
+    </ul>
+
+
+    <section>
+ 
+            <div class="container mb-3">
+               <h1>WELCOME to Trainer List </h1>
+            </div>
+
+            <ul>
+
+
+             
+
+
+                <% const rio = ['61715afd23ccb2be5168acd8', '61715afd23ccb2be5168ac12', '61715afd23ccb2be5168ac142'];  %>
+
+
+
+                <% const result = trainersMark.find( ({ trainerId }) => trainerId); %>
+                
+                
+
+
+                <%= console.log('result is', result) %>
+
+
+
+
+            <% for (let x=0; x<trainers.length; x++) { %>
+
+
+          
+                <% if(rio.includes(trainers[x]._id.toString())){ %>  
+                    <li><%= trainers[x].fname %> <%= trainers[x].lname %></li>
+                <% } else { %>
+                    <li><%= trainers[x].fname %> <%= trainers[x].lname %> <%- include('../includes/enroll', {trainer: trainers[x]}) %></li>
+                <% } %>      
+
+
+                            
+                
+            <% } %>
+            </ul>
+
+
+    </section>
+    </main>
+
+
+
+
+<%- include('../includes/footer.ejs') %>

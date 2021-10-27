@@ -11,9 +11,18 @@
             <form action="/logout" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <button type="submit">Logout</button>
-            </form>
-            <a href="/user/manage-account/account?edit=true">Update Account</a>
+            </form>    
         </li>
+
+        <li class="main-header__item">
+        <a href="/user/manage-account/account?edit=true">Update Account</a>
+        </li>
+
+        <li class="main-header__item">
+            <a href="/user/trainer-list">Trainer List</a>
+        </li>
+
+
     </ul>
 
 
