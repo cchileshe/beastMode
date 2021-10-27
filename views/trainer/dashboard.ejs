@@ -6,14 +6,23 @@
 
     <main>
 
+    <ul>
+        <li class="main-header__item">
+            <form action="/logout" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button type="submit">Logout</button>
+            </form>
+            <a href="/trainer/manage-account/account?edit=true">Update Account</a>
+        </li>
+    </ul>
+
+
     <section>
  
             <div class="container mb-3">
-               <h1>WELCOME to Dashboard Trainer</h1>
+               <h1>WELCOME to Dashboard Client <%= trainer.fname %> </h1>
             </div>
     </section>
-
-
     </main>
 
 

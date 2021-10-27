@@ -1,0 +1,5 @@
+<form action="/user/enroll" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button class="btn" type="submit">Enroll</button>
+    <input type="hidden" name="trainerId" value="<%= trainer._id %>">
+</form>

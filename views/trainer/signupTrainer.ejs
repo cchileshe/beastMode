@@ -13,16 +13,13 @@
     </header>
 
     <section>
-
+ 
             <div class="container mb-3">
-                <h2>Sign Up For Trainers</h2>
-
+                <h2>Sign Up</h2>
                 <% if (errorMessage) { %>
                     <div class="message-error"><%= errorMessage %></div>
                 <% } %>
-
-
-                <form action="/trainer/registered" method="POST" class="signup">
+                <form action="/trainer/<% if (editing) { %>account<% } else { %>registered<% } %>" method="POST" class="signup">
                     <div class="form-control">
                     <label for="fname">First Name</label>
                     <input
@@ -30,11 +27,8 @@
                     type="text" 
                     name="fname" 
                     id="fname"
-                    value="<% if (hasError) { %><%= trainer.fname %><% } %>">
+                    value="<% if (hasError) { %><%= trainer.fname %><% } else if (editing) { %><%= trainer.fname %><% } %>">
                     </div>
-
-
-
                     <div class="form-control">
                         <label for="lname">Last Name</label>
                         <input 
@@ -42,7 +36,7 @@
                         name="lname" 
                         id="lname"
                         class="<%= validationErrors.find(e => e.param === 'lname') ? 'invalid' : '' %>"
-                        value="<% if (hasError) { %><%= trainer.lname %><% } %>">
+                        value="<% if (hasError) { %><%= trainer.lname %><% } else if (editing) { %><%= trainer.lname %><% }%>">
 
                     </div>
 
@@ -53,7 +47,7 @@
                         name="address" 
                         id="address"
                         class="<%= validationErrors.find(e => e.param === 'address') ? 'invalid' : '' %>"
-                        value="<% if (hasError) { %><%= trainer.address %><% } %>">
+                        value="<% if (hasError) { %><%= trainer.address %><% } else if (editing) { %><%= trainer.address %><% } %>">
                     </div>    
 
                     <div class="form-control">
@@ -62,7 +56,7 @@
                         name="email"
                         id="email"
                         class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
-                        value="<% if (hasError) { %><%= trainer.email %><% } %>">
+                        value="<% if (hasError) { %><%= trainer.email %><% } else if (editing) { %><%= trainer.email %><% } %>">
                     </div> 
 
 
@@ -70,11 +64,10 @@
                         <label for="password">Password</label>
                         <input type="text" 
                         name="password" 
-                        id="password"
+                        id="address"
                         class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
                         value="<% if (hasError) { %><%= trainer.password %><% } %>">
-                    </div> 
-
+                    </div>
 
                     <div class="form-control">
                         <label for="password">Confirm Password</label>
@@ -84,6 +77,10 @@
                         class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"
                         value="<% if (hasError) { %><%= trainer.confirmPassword %><% } %>">
                     </div> 
+
+                    <% if (editing) { %>
+                        <input type="hidden" value="<%= trainer._id %>" name="trainerId">
+                    <% } %>
 
 
                     <div class="form-control">

@@ -1,4 +1,8 @@
 const User = require('../models/user');
+const Trainer = require('../models/trainer');
+const Enroll = require('../models/enroll');
+
+
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
@@ -68,6 +72,7 @@ exports.updateAccount = (req, res, next) => {
         address: address,
         email: email,
         password: password,
+        editing: editMode,
         _id:userId
 
       },
@@ -114,6 +119,43 @@ exports.updateAccount = (req, res, next) => {
 }
 
 
+exports.postEnroll= (req, res, next) => {
+ 
+  const trainerId = req.body.trainerId;
+  
+  Trainer.findById(trainerId)
+    .then(trainers => {
+      const enroll = new Enroll({
+     
+          email: req.user.email,
+          userId: req.user,
+          trainerId:trainerId
+      
+        //,
+        // trainer: {
+        //   trainer:trainers
+        // }
+      });
+      return enroll.save();
+    })
+    .then(result => {
+      // console.log('hey');
+      // console.log(result);
+      res.redirect('/user/account');
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+
+    
+
+    
+}
+
+
+
 
 exports.getProfile = (req, res, next) => {
   res.render('client/profile', {
@@ -125,19 +167,13 @@ exports.getProfile = (req, res, next) => {
 
 
 exports.getDashboard = (req, res, next) => {
- 
-
-    if (req.session.isLoggedIn && req.session.isUser ==="client") {
-    
       res.render('client/dashboard', {
         user: req.session.user,
         pageTitle: 'My Account',
         path: '/user/account',
       });
    
-  }else{
-    res.redirect('/user/login')
-  }
+  
 };
 
 
@@ -291,4 +327,28 @@ exports.postRegister = (req, res, next) => {
       error.httpStatusCode = 500;
       return next(error);
     });
+};
+
+
+
+
+exports.trainerList = (req, res, next) => {
+  //check if it is enrolled.
+
+  Enroll.find({'userId': req.user._id}).then(enrolled=>{
+  Trainer.find()
+  .then(trainer => {
+    res.render('client/trainerList', {
+      pageTitle: 'List of Trainers',
+      path: '/user/trainer-list',
+      trainers:trainer,
+      trainersMark:enrolled
+     });
+
+  });
+
+})
+
+
+  
 };
