@@ -5,24 +5,71 @@
   
 
     <main>
+        <section>
+    
+                <div class="container mb-3">
+                <h1>WELCOME to Dashboard Client <%= trainer.fname %> </h1>
+                </div>
+        </section>
 
-    <ul>
-        <li class="main-header__item">
-            <form action="/logout" method="post">
-                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                <button type="submit">Logout</button>
-            </form>
-            <a href="/trainer/manage-account/account?edit=true">Update Account</a>
-        </li>
-    </ul>
+        <section>
+            <div id="sideBar" class=" d-flex flex-column flex-shrink-0 p-3 bg-light" style="width:280px">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <img class="bi me-2" width="40" height="40" src="/asset/icons/user-gold.png"/>
+                    <span class="fs-4">Sidebar</span>
+                  </a>
 
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                  <a href="#" class="nav-link active" aria-current="page">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link link-dark">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                    Clients
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link link-dark">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                    Booked Sessions
+                  </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark">
+                      <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                      My Products
+                    </a>
+                  </li>
 
-    <section>
- 
-            <div class="container mb-3">
-               <h1>WELCOME to Dashboard Client <%= trainer.fname %> </h1>
+                <hr>
+                <li>
+                  <a href="/trainer/manage-account/account?edit=true" class="nav-link link-dark">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                    Update Account
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link link-dark">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">  
+                    </form>
+                  </a>
+                </li>
+                <li>
+                    <button type="submit">Logout</button>
+                </li>
+              </ul>
+              <hr>
+       
             </div>
-    </section>
+
+        </section>
     </main>
 
 
