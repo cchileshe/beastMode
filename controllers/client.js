@@ -332,6 +332,48 @@ exports.postRegister = (req, res, next) => {
 
 
 
+exports.mytrainer = (req, res, next) => {
+  Enroll.find({'userId': req.user._id}).then(enrolled=>{
+  Trainer.find()
+  .then(trainer => {
+    res.render('client/mytrainer', {
+      pageTitle: 'My Trainers List',
+      path: '/user/trainer-list',
+      trainers:trainer,
+      trainersMark:enrolled
+     });
+  });
+})
+};
+
+
+exports.trainings = (req, res, next) => {
+  res.render('client/mytrainings', {
+    pageTitle: 'View Trainings',
+    path: '/user/mytrainings'
+   });
+
+};
+
+
+exports.appointment = (req, res, next) => {
+  res.render('client/appointment', {
+    pageTitle: 'Make Appointment',
+    path: '/user/appointment'
+   });
+
+};
+
+exports.sendNote = (req, res, next) => {
+  res.render('client/appointment', {
+    pageTitle: 'Make Appointment',
+    path: '/user/appointment'
+   });
+
+};
+
+
+
 exports.trainerList = (req, res, next) => {
   //check if it is enrolled.
 
@@ -349,6 +391,4 @@ exports.trainerList = (req, res, next) => {
 
 })
 
-
-  
 };
