@@ -17,7 +17,6 @@ router.post('/login', clientController.postLogin);
 
 
 
-
 router.get('/trainer-list',isAuth.loginUser,  clientController.trainerList);
 router.post('/enroll', clientController.postEnroll);
 
@@ -32,8 +31,6 @@ router.post('/send-note',  clientController.postSendNote);
 
 router.get('/appointment/:trainerid',isAuth.loginUser,  clientController.appointment);
 router.post('/appointment',  clientController.postAppointment);
-
-
 
 
 router.get('/sign-up',isAuth.loginUser, clientController.getSignup);

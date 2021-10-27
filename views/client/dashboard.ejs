@@ -5,6 +5,7 @@
   
 
     <main>
+        <section>
 
         <%- include('../includes/clientnav.ejs') %>
 
@@ -14,7 +15,32 @@
             <div class="container mb-3">
                <h1>WELCOME to Dashboard Client <%= user.fname %> </h1>
             </div>
-    </section>
+        </section>
+
+        <section>
+            <div class=" d-flex flex-column flex-shrink-0 p-3 bg-light">
+                <ul>
+                    <li class="main-header__item">
+                        <form action="/logout" method="post">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button type="submit">Logout</button>
+                        </form>    
+                    </li>
+        
+                    <li class="main-header__item">
+                    <a href="/user/manage-account/account?edit=true">Update Account</a>
+                    </li>
+        
+                    <li class="main-header__item">
+                        <a href="/user/trainer-list">Trainer List</a>
+                    </li>
+                </ul>
+        
+            </div>
+
+        </section>
+
+   
     </main>
 
 

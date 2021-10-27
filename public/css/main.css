@@ -11,21 +11,29 @@ section {
 /* section p{
   color: #747e80;
 } */
+
 .btn-primary {
-  background: #9c8357;
+  color: #fff;
+  background-color: #9c8357;
   border-color: #9c8357;
   text-transform: uppercase;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
-
 .btn-primary:hover {
-  background: #7b6845;
-  border-color: #9c8357;
+  color: #fff;
+  background-color: #663399;
+  border-color: #663399;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 
 /* ======================================================
                     NAVIGATION
 ========================================================*/
 
+.fixed-top {
+  
+  background-color: rgba(0, 0, 0, 0.3);
+}
 
 .hero-banner .container .mainlogo img {
   max-height: 81px;
@@ -41,15 +49,16 @@ section {
   display: inline-block;
   padding: 0 1em 0em 1em;
 }
-.main-nav nav ul li a {
+.hero-banner nav ul li a {
   font-size: 1.2em;
   font-weight: 300;
   letter-spacing: 0.1em;
   font-variant: small-caps;
   text-decoration: none;
   color: #ffffff;
+  font-size: 14px;
 }
-.main-nav nav ul li a:hover {
+.hero-banner nav ul li a:hover {
   border-bottom: 2px solid #555555;
   color: #9c8357;
 } 
@@ -475,4 +484,195 @@ footer .footer-second-row {
     grid-template-columns: 1fr 1fr;
   }
 } 
-/*# sourceMappingURL=main.css.map */
+
+
+
+/* ===========================
+        SIGNUP FORMS
+  ============================== */
+/*   */
+  
+.content {
+  width: 95%;
+  margin: 0 auto 50px;
+}
+
+.content__title {
+  margin-bottom: 40px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.content__title--m-sm {
+  margin-bottom: 10px;
+}
+
+.multisteps-form__progress {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1fr));
+}
+
+.multisteps-form__progress-btn {
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  position: relative;
+  padding-top: 30px;
+    padding-bottom: 30px;
+  color: rgba(108, 117, 125, 0.7);
+  text-indent: -9999px;
+  border: none;
+  background-color: transparent;
+  outline: none !important;
+  cursor: pointer;
+}
+@media (min-width: 500px) {
+  .multisteps-form__progress-btn {
+    text-indent: 0;
+    text-align: left;
+   align-items: center;
+  }
+}
+.multisteps-form__progress-btn:before {
+  position: absolute;
+  top: 50%;
+  left: 15.4em;
+  display: block;
+  width: 13px;
+  height: 13px;
+  content: '';
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  transition: all 0.15s linear 0s, -webkit-transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+  transition: all 0.15s linear 0s, transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+  transition: all 0.15s linear 0s, transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s, -webkit-transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background-color: #fff;
+  box-sizing: border-box;
+  z-index: 3;
+}
+.multisteps-form__progress-btn:after {
+position: absolute;
+top: -40px;
+transition-property: all;
+transition-duration: 0.15s;
+transition-timing-function: linear;
+transition-delay: 0s;
+display: block;
+width: 2px;
+height: 100%;
+content: '';
+background-color: currentColor;
+z-index: 1;
+left: 15.3em;
+}
+.multisteps-form__progress-btn:first-child:after {
+  display: none;
+}
+.multisteps-form__progress-btn.js-active {
+  color: #9c8357;
+}
+.multisteps-form__progress-btn.js-active:before {
+  -webkit-transform: translateX(-50%) scale(1.2);
+          transform: translateX(-50%) scale(1.2);
+  background-color: currentColor;
+}
+
+.multisteps-form__form {
+  position: relative;
+}
+
+.multisteps-form__panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+.multisteps-form__panel.js-active {
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+}
+.multisteps-form__panel[data-animation="scaleOut"] {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+.multisteps-form__panel[data-animation="scaleOut"].js-active {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.multisteps-form__panel[data-animation="slideHorz"] {
+  left: 50px;
+}
+.multisteps-form__panel[data-animation="slideHorz"].js-active {
+  transition-property: all;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.2, 1.13, 0.38, 1.43);
+  transition-delay: 0s;
+  left: 0;
+}
+.multisteps-form__panel[data-animation="slideVert"] {
+  top: 30px;
+}
+.multisteps-form__panel[data-animation="slideVert"].js-active {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  top: 0;
+}
+.multisteps-form__panel[data-animation="fadeIn"].js-active {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+}
+.multisteps-form__panel[data-animation="scaleIn"] {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+.multisteps-form__panel[data-animation="scaleIn"].js-active {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+
+.btn-success, .btn-success:hover {
+  color: #fff;
+  background-color: #663399;
+  border-color: #663399;
+}
+
+/* .multisteps-form__progress span{
+  float:right;
+}  */
+
+img.icons{
+  position: absolute;
+  right:150px;
+}
+
+/* ===============================
+              DASHBOARDS
+=================================== */
+/* SIDE BAR */
+#sidebar hr {
+  margin: 1rem0;
+  color: inherit;
+  background-color: currentColor;
+  border: 0;
+  opacity: .25;
+}
