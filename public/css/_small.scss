@@ -197,7 +197,7 @@ footer{
             font-size:1.2em;text-align:center;border-left:2px solid $mainfontcolorhover;padding-inline-start:1em;}
         ul{padding-inline-start:0em;
             li{width:100%;list-style:none;padding:.5em 0em;border-bottom:0.05em solid $fontfordark;font-size:1.2em;
-                a{text-decoration:none;color:$fontfordark;font-family:"Open Sans",Sans-serif;
+                a{text-decoration:none;color:$fontfordark;font-family:'Alegreya', serif;
                     &:hover{color:$mainfontcolorhover;}
                 }
             }
