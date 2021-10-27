@@ -1,6 +1,8 @@
 const User = require('../models/user');
 const Trainer = require('../models/trainer');
 const Enroll = require('../models/enroll');
+const Appointment = require('../models/appointment');
+const Note=require('../models/note');
 
 
 const { validationResult } = require('express-validator');
@@ -130,11 +132,6 @@ exports.postEnroll= (req, res, next) => {
           email: req.user.email,
           userId: req.user,
           trainerId:trainerId
-      
-        //,
-        // trainer: {
-        //   trainer:trainers
-        // }
       });
       return enroll.save();
     })
@@ -348,29 +345,78 @@ exports.mytrainer = (req, res, next) => {
 
 
 exports.trainings = (req, res, next) => {
-  res.render('client/mytrainings', {
-    pageTitle: 'View Trainings',
-    path: '/user/mytrainings'
-   });
+
+  Trainer.find({'_id':req.params.trainerid})
+  .then(trainer => {
+      res.render('client/mytrainings', {
+        pageTitle: 'View Trainings',
+        path: '/user/mytrainings',
+        trainers:trainer
+      });
+  });
 
 };
 
 
 exports.appointment = (req, res, next) => {
-  res.render('client/appointment', {
-    pageTitle: 'Make Appointment',
-    path: '/user/appointment'
-   });
+  Trainer.find({'_id':req.params.trainerid})
+  .then(trainer => {
+    res.render('client/appointment', {
+      pageTitle: 'Make Appointment',
+      path: '/user/appointment',
+      trainers:trainer
+    });
+  });
 
 };
+
+
+exports.postAppointment = (req, res, next) => {
+ 
+  const appt = req.body.appointment;
+  const trainerId = req.body.trainerId;
+
+  const appointment = new Appointment({
+     
+    trainerid: trainerId,
+    userid: req.user._id,
+    appointment:appt
+  });
+  appointment.save();
+  res.redirect('/user/mytrainer');
+};
+
+
 
 exports.sendNote = (req, res, next) => {
-  res.render('client/appointment', {
-    pageTitle: 'Make Appointment',
-    path: '/user/appointment'
-   });
+  Trainer.find({'_id':req.params.trainerid})
+  .then(trainer => {
+    res.render('client/sendnote', {
+      pageTitle: 'Send A note',
+      path: '/user/send-note',
+      trainers:trainer
+    });
+  });
 
 };
+
+exports.postSendNote = (req, res, next) => {
+ 
+  const subject = req.body.subject;
+  const message = req.body.message;
+  const trainerId = req.body.trainerId;
+
+  const note = new Note({
+    trainerid: trainerId,
+    userid: req.user._id,
+    subject:subject,
+    message:message
+  });
+  note.save();
+  res.redirect('/user/mytrainer');
+};
+
+
 
 
 

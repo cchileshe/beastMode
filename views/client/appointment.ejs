@@ -12,11 +12,16 @@
     <section>
  
             <div class="container mb-3">
-               <h1>WELCOME to Appointment</h1>
+               <h1>Set appointment with  <%= trainers[0].fname %> <%= trainers[0].lname %> </h1>
             </div>
 
-            <ul>
 
+            <form action="/user/appointment" method="POST">
+                <input type="date" name="appointment">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn" type="submit">Set Appointment</button>
+                <input type="hidden" name="trainerId" value="<%= trainers[0]._id %>">
+            </form>
 
              
 
