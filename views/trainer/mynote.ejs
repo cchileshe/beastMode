@@ -1,0 +1,40 @@
+<%- include('../includes/head.ejs') %>
+
+
+<body>
+  
+
+    <main>
+        <%- include('../includes/trainernav.ejs') %>
+
+    <section>
+            <div class="container mb-3">
+               <h1>My Notes</h1>
+            </div>
+
+
+            
+
+            <% for (mynote of note) { %>
+
+                <%= mynote.subject %>
+                <br>
+                <%= mynote.message %>
+                <br>
+                
+                Send by <%= mynote.user[0].fname %>
+
+            <% } %>
+
+
+
+           
+         
+
+    </section>
+    </main>
+
+
+
+
+<%- include('../includes/footer.ejs') %>

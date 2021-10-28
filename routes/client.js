@@ -19,6 +19,7 @@ router.post('/login', clientController.postLogin);
 
 router.get('/trainer-list',isAuth.loginUser,  clientController.trainerList);
 router.post('/enroll', clientController.postEnroll);
+router.post('/unenroll', clientController.postUnenroll);
 
 
 
