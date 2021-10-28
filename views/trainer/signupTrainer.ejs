@@ -15,7 +15,10 @@
     <section>
  
             <div class="container mb-3">
-                <h2>Sign Up</h2>
+
+                <% if (editing) { %><h2>Update Account</h2><% } else { %><h2>Sign Up</h2><% } %>
+
+             
                 <% if (errorMessage) { %>
                     <div class="message-error"><%= errorMessage %></div>
                 <% } %>

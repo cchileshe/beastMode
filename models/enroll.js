@@ -9,17 +9,16 @@ const enrollSchema = new Schema({
       type: String,
       required: true
     },
-    userId: {
+    user: [{
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'User'
-    },
-    trainerId:{
-        type: Schema.Types.ObjectId,
-        require:true,
-        ref:'Trainer'
-    }
-
+    }],
+    trainer: [{
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: 'Trainer'
+    }]
 
 
 

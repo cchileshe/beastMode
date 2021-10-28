@@ -1,0 +1,42 @@
+<%- include('../includes/head.ejs') %>
+
+
+<body>
+  
+
+    <main>
+        <%- include('../includes/trainernav.ejs') %>
+
+    <section>
+            <div class="container mb-3">
+               <h1>My Client List</h1>
+            </div>
+
+
+        <% if(!users){ %>
+            <h3>No Client Enrolled</h3>
+        <% }else{ %>
+            <% for (user of users) { %>
+                <%= user.user[0].fname %>
+                    <div class="card">
+                        <div class="row">
+                             <a href="/trainer/appointment/<%= user.user[0]._id %>">Appointments</a>
+                             <a href="/trainer/send-note/<%= user.user[0]._id %>">Message</a>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+
+                 <% } %>
+            <% } %>
+
+        
+         
+
+    </section>
+    </main>
+
+
+
+
+<%- include('../includes/footer.ejs') %>

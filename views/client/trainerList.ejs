@@ -19,22 +19,21 @@
 
 
              
-
-
-
-                <%  const trainersMarked = trainersMark.map(x => x.trainerId.toString()); %>
+    
+               
+                <%  const trainersMarked = trainersMark.map(x => x.trainer[0]._id.toString()); %>
               <!-- console.log('result is', trainersMarked )  -->
 
-
             <% for (let x=0; x<trainers.length; x++) { %>
-
-                <% if(trainersMarked.includes(trainers[x]._id.toString())){ %>  
-                    <li><%= trainers[x].fname %> <%= trainers[x].lname %> - enrolled</li>
-                <% } else { %>
-                    <li><%= trainers[x].fname %> <%= trainers[x].lname %> <%- include('../includes/enroll', {trainer: trainers[x]}) %></li>
-                <% } %>                         
-                
+                    <% if(trainersMarked.includes(trainers[x]._id.toString())){ %>  
+                        <li><%= trainers[x].fname %> <%= trainers[x].lname %> - enrolled</li>
+                    <% } else { %>
+                        <li><%= trainers[x].fname %> <%= trainers[x].lname %> <%- include('../includes/enroll', {trainer: trainers[x]}) %></li>
+                    <% } %>                         
+              
             <% } %>
+
+
             </ul>
 
 

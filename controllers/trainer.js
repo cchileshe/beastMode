@@ -1,4 +1,10 @@
 const Trainer = require('../models/trainer');
+const User = require('../models/user');
+const Enroll = require('../models/enroll');
+const Appointment = require('../models/appointment');
+const Note = require('../models/note');
+
+
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
@@ -132,9 +138,60 @@ exports.getDashboard = (req, res, next) => {
         pageTitle: 'My Account',
         path: '/trainer/account',
       });
-   
- 
 };
+
+
+exports.myclient = (req, res, next) => {
+  Enroll.find({'trainer': req.trainer._id})
+  .populate('user')
+  .then(user=>{
+    res.render('trainer/myclient', {
+      pageTitle: 'My Client',
+      path: '/trainer/myclient',
+      users:user
+    });
+  });
+};
+
+
+exports.myAppointment = (req, res, next) => {
+  Appointment.find({'trainer': req.trainer._id}).populate('user')
+  .then(myappointment=>{
+    res.render('trainer/myAppointment', {
+      pageTitle: 'My Client',
+      path: '/trainer/myappointment',
+      myappointments:myappointment,
+    });
+});
+
+
+};
+
+
+
+
+exports.myNote = (req, res, next) => {
+  Note.find({'trainer': req.trainer._id}).populate('user')
+  .then(notes=>{
+  res.render('trainer/myNote', {
+    pageTitle: 'My Note',
+    path: '/trainer/mynote',
+    note:notes
+  });
+});
+
+
+};
+
+
+
+exports.mytrainings = (req, res, next) => {
+    res.render('trainer/trainings', {
+      pageTitle: 'My Trainings',
+      path: '/trainer/mytrainings',
+  });
+};
+
 
 
 
