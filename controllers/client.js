@@ -144,13 +144,35 @@ exports.postEnroll= (req, res, next) => {
       error.httpStatusCode = 500;
       return next(error);
     });
-
-    
-
-    
 }
 
+exports.postUnenroll = (req, res, next) => {
 
+  const trainerId = req.body.trainerId;
+    Enroll.deleteOne({ 'user' : req.user._id, trainer:trainerId })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+
+    Note.deleteMany({ 'user' : req.user._id, trainer:trainerId }).catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+
+    Appointment.deleteMany({ 'user' : req.user._id, trainer:trainerId })
+    .then(result=>{
+      res.redirect('/user/account');
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+    
+};
 
 
 exports.getProfile = (req, res, next) => {

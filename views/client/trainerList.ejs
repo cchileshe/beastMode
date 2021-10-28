@@ -26,7 +26,7 @@
 
             <% for (let x=0; x<trainers.length; x++) { %>
                     <% if(trainersMarked.includes(trainers[x]._id.toString())){ %>  
-                        <li><%= trainers[x].fname %> <%= trainers[x].lname %> - enrolled</li>
+                        <li><%= trainers[x].fname %> <%= trainers[x].lname %> - <%- include('../includes/unenroll', {trainer: trainers[x]}) %></li>
                     <% } else { %>
                         <li><%= trainers[x].fname %> <%= trainers[x].lname %> <%- include('../includes/enroll', {trainer: trainers[x]}) %></li>
                     <% } %>                         
