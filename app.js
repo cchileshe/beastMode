@@ -7,6 +7,7 @@ const csrf = require('csurf');
 const flash = require('connect-flash');
 const cors = require('cors') 
 const User = require('./models/user');
+const Trainer = require('./models/trainer');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -65,6 +66,26 @@ app.use((req, res, next) => {
         return next();
       }
       req.user = user;
+      next();
+    })
+    .catch(err => {
+      next(new Error(err));
+    });
+});
+
+
+//save to Trainer
+app.use((req, res, next) => {
+  if (!req.session.trainer) {
+    return next();
+  }
+  
+ Trainer.findById(req.session.trainer._id)
+    .then(trainer => {
+      if (!trainer) {
+        return next();
+      }
+      req.trainer = trainer;
       next();
     })
     .catch(err => {

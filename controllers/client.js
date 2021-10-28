@@ -128,10 +128,9 @@ exports.postEnroll= (req, res, next) => {
   Trainer.findById(trainerId)
     .then(trainers => {
       const enroll = new Enroll({
-     
           email: req.user.email,
-          userId: req.user,
-          trainerId:trainerId
+          user: req.user,
+          trainer:trainerId
       });
       return enroll.save();
     })
@@ -328,19 +327,16 @@ exports.postRegister = (req, res, next) => {
 
 
 exports.mytrainer = (req, res, next) => {
-  Enroll.find({'userId': req.user._id}).then(enrolled=>{
-  Trainer.find()
-  .then(trainer => {
+  Enroll.find({'user': req.user._id})
+  .populate('trainer')
+  .then(trainers=>{
     res.render('client/mytrainer', {
       pageTitle: 'My Trainers List',
-      path: '/user/trainer-list',
-      trainers:trainer,
-      trainersMark:enrolled
-     });
+      path: '/user/mytrainer',
+      trainer:trainers
+    });
   });
-})
 };
-
 
 exports.trainings = (req, res, next) => {
   res.render('client/mytrainings', {
@@ -368,23 +364,10 @@ exports.sendNote = (req, res, next) => {
 };
 
 
-exports.mytrainer = (req, res, next) => {
-  Enroll.find({'userId': req.user._id}).then(enrolled=>{
-  Trainer.find()
-  .then(trainer => {
-    res.render('client/mytrainer', {
-      pageTitle: 'My Trainers List',
-      path: '/user/trainer-list',
-      trainers:trainer,
-      trainersMark:enrolled
-     });
-  });
-})
-};
+
 
 
 exports.trainings = (req, res, next) => {
-
   Trainer.find({'_id':req.params.trainerid})
   .then(trainer => {
       res.render('client/mytrainings', {
@@ -416,10 +399,11 @@ exports.postAppointment = (req, res, next) => {
   const trainerId = req.body.trainerId;
 
   const appointment = new Appointment({
-     
-    trainerid: trainerId,
-    userid: req.user._id,
-    appointment:appt
+    
+    appointment:appt,
+    user:req.user._id,
+    trainer: trainerId
+
   });
   appointment.save();
   res.redirect('/user/mytrainer');
@@ -446,10 +430,10 @@ exports.postSendNote = (req, res, next) => {
   const trainerId = req.body.trainerId;
 
   const note = new Note({
-    trainerid: trainerId,
-    userid: req.user._id,
     subject:subject,
-    message:message
+    message:message,
+    user:req.user._id,
+    trainer: trainerId,
   });
   note.save();
   res.redirect('/user/mytrainer');
@@ -462,7 +446,7 @@ exports.postSendNote = (req, res, next) => {
 exports.trainerList = (req, res, next) => {
   //check if it is enrolled.
 
-  Enroll.find({'userId': req.user._id}).then(enrolled=>{
+  Enroll.find({'user': req.user._id}).populate('trainer').then(enrolled=>{
   Trainer.find()
   .then(trainer => {
     res.render('client/trainerList', {

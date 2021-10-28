@@ -13,14 +13,22 @@ router.use('/js', express.static(path.join('node_modules/bootstrap/dist/js')))
 
 
 router.get('/login', isAuth.loginTrainer, trainerController.getLogin);
+router.post('/login', trainerController.postLogin);
 
-router.post('/login', isAuth.loginTrainer,trainerController.postLogin);
 
 router.get('/account', isAuth.loginTrainer,trainerController.getDashboard);
 
 
 router.get('/sign-up',isAuth.loginTrainer, trainerController.getSignup);
 router.get('/registered',isAuth, trainerController.getProfile);
+
+
+
+router.get('/myclient',isAuth.loginTrainer,  trainerController.myclient);
+router.get('/myappointment',isAuth.loginTrainer,  trainerController.myAppointment);
+router.get('/mytrainings',isAuth.loginTrainer,  trainerController.mytrainings);
+
+router.get('/mynote',isAuth.loginTrainer,  trainerController.myNote);
 
 
 

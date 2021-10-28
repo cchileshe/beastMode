@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %>
+
+
+<body>
+  
+
+    <main>
+        <%- include('../includes/trainernav.ejs') %>
+
+    <section>
+            <div class="container mb-3">
+               <h1>My Appointment</h1>
+            </div>
+
+
+             <!-- const allappointmentMarked = allappointment.map(x => x.userid); %> -->
+           
+             <% for (appointment of myappointments) { %>
+
+                <%= appointment.appointment %>
+              
+                
+                set by <%= appointment.user[0].fname %>
+                <br>
+                <br>
+
+            <% } %>
+
+
+
+
+    </section>
+    </main>
+
+
+
+
+<%- include('../includes/footer.ejs') %>
