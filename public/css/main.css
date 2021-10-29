@@ -1,5 +1,5 @@
 body {
-  font-family: "Raleway";
+  font-family: 'Raleway', serif !important;
   font-size: 16px;
   margin: 0;
   padding: 0;
@@ -14,16 +14,27 @@ section {
 
 .btn-primary {
   color: #fff;
-  background-color: #9c8357;
-  border-color: #9c8357;
-  text-transform: uppercase;
+  background-color: #9c8357!important;
+  border-color: #9c8357!important;
+  font-variant: small-caps!important;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
+
 .btn-primary:hover {
   color: #fff;
   background-color: #663399;
   border-color: #663399;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.btn-secondary {
+  color: #fff;
+  font-variant: small-caps!important;
+  letter-spacing: 1px;
+}
+
+.signup-form h2{
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 /* ======================================================
@@ -50,13 +61,13 @@ section {
   padding: 0 1em 0em 1em;
 }
 .hero-banner nav ul li a {
-  font-size: 1.2em;
+  
   font-weight: 300;
   letter-spacing: 0.1em;
   font-variant: small-caps;
   text-decoration: none;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 1.1em;
 }
 .hero-banner nav ul li a:hover {
   border-bottom: 2px solid #555555;
@@ -71,7 +82,6 @@ a#getStarted {
   padding: 10px;
   text-align: center;
   font-size: 1.2em;
-  font-family: "Raleway";
   font-variant: small-caps;
   letter-spacing: 0.1em;
   font-weight: 300;
@@ -370,7 +380,7 @@ footer .footer-first-row ul li {
 footer .footer-first-row ul li a {
   text-decoration: none;
   color: #ffffff;
-  font-family: "Open Sans",Sans-serif;
+  font-family: 'Alegreya', serif;
 }
 
 footer .footer-first-row ul li a:hover {
@@ -417,7 +427,7 @@ footer .footer-second-row {
   font-weight: 600;
 }
   /* body {
-    font-family: "Raleway";
+    font-family: 'Alegreya', serif;
     font-size: 14px;
     font-weight: 200;
     margin: 0;
@@ -669,10 +679,49 @@ img.icons{
               DASHBOARDS
 =================================== */
 /* SIDE BAR */
+#sidebar{
+  color: #ffffff;
+}
+.link-dark{
+  color: #ffffff;
+}
+.link-dark:hover {
+  color: #9c8357;
+}
 #sidebar hr {
-  margin: 1rem0;
+  margin: 1rem 0;
+  color: #303234!important;
+  font-weight: 300;
+  background-color: #f5f3f4;
+  border: 0;
+  opacity: .25;
+}
+.bg-light {
+  background-color: #f5f3f4!important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #9c8357!important;
+}
+.card-title{
+  color: #9c8357;
+}
+  
+.card-text{
+  font-size: 4em;
+  color: #663399;
+}
+
+.main-dashboard h1{
+  margin-top: .5em;
+  margin-bottom: 1.5em;
+  font-variant: small-caps;
+}
+.main-dashboard hr {
+  margin: 2rem 0;
   color: inherit;
-  background-color: currentColor;
+  background-color: #666666;
   border: 0;
   opacity: .25;
 }
