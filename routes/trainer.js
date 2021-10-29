@@ -19,7 +19,7 @@ router.post('/login', trainerController.postLogin);
 router.get('/account', isAuth.loginTrainer,trainerController.getDashboard);
 
 
-router.get('/sign-up',isAuth.loginTrainer, trainerController.getSignup);
+router.get('/sign-up',isAuth, trainerController.getSignup);
 router.get('/registered',isAuth, trainerController.getProfile);
 
 

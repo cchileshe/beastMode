@@ -185,11 +185,33 @@ exports.getProfile = (req, res, next) => {
 
 
 exports.getDashboard = (req, res, next) => {
+
+
+  Appointment.find({user: req.user._id}).countDocuments().then(appcount=>{
+    
+      
+
+    Enroll.find({user: req.user._id}).populate('trainer')
+      .then(trainer=>{
+
+        
+        const trainerList=trainer.map(x => x.trainer[0].fname);
+    
+
+      const billings=trainerList.length * 37;
       res.render('client/dashboard', {
         user: req.session.user,
         pageTitle: 'My Account',
         path: '/user/account',
+        billing:billings,
+        appcount:appcount,
+        trainername:trainerList[0]+'...'
       });
+      });
+    
+    })
+
+
    
   
 };

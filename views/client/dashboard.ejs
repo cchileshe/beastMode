@@ -21,7 +21,7 @@
                     <div class="card" style="width: 18rem;">
                       <div class="card-body">
                         <h5 class="card-title">Trainer</h5>
-                        <p class="card-text">Gabby</p>
+                        <p class="card-text"><% if(!trainername){%>No Trainer Yet<%}else{%> <%=trainername%><%} %></p>
                         <a href="/user/mytrainer" class="btn btn-secondary">view profile</a>
                       </div>
                     </div>
@@ -30,7 +30,7 @@
                     <div class="card" style="width: 18rem;">
                       <div class="card-body">
                         <h5 class="card-title">Sessions Left</h5>
-                        <p class="card-text">15</p>
+                        <p class="card-text"><% if(!appcount){%>0<%}else{%> <%=appcount%><%} %></p>
                         <a href="#" class="btn btn-secondary">view</a>
                       </div>
                     </div>
@@ -38,6 +38,7 @@
                   <div class="col-6 col-md-4"><div class="card" style="width: 18rem;">
                     <div class="card-body">
                       <h5 class="card-title">Billing</h5>
+                      <p class="card-text"><% if(!billing){%>0<%}else{%> <%=billing%><%} %></p>
                       <a href="#" class="btn btn-secondary">manage</a>
                     </div>
                   </div>
