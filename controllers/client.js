@@ -479,7 +479,6 @@ exports.trainerList = (req, res, next) => {
      });
 
   });
-
 })
 
 };
