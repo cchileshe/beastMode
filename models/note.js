@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 
 const noteSchema = new Schema({
     
-
   subject: {
     type: String,
     required: true
@@ -23,8 +22,6 @@ const noteSchema = new Schema({
     required: true,
     ref: 'Trainer'
   }]
-
-
 
 });
 

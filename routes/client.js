@@ -34,8 +34,6 @@ router.get('/appointment/:trainerid',isAuth.loginUser,  clientController.appoint
 router.post('/appointment',  clientController.postAppointment);
 
 
-
-
 router.get('/sign-up',isAuth.loginUser, clientController.getSignup);
 router.get('/registered',isAuth.loginUser, clientController.getProfile);
 
