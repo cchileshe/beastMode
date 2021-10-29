@@ -12,7 +12,7 @@ router.use('/js', express.static(path.join('node_modules/bootstrap/dist/js')))
 
 
 
-router.get('/login', isAuth.loginTrainer, trainerController.getLogin);
+router.get('/login', isAuth, trainerController.getLogin);
 router.post('/login', trainerController.postLogin);
 
 
@@ -28,7 +28,11 @@ router.get('/myclient',isAuth.loginTrainer,  trainerController.myclient);
 router.get('/myappointment',isAuth.loginTrainer,  trainerController.myAppointment);
 router.get('/mytrainings',isAuth.loginTrainer,  trainerController.mytrainings);
 
+router.get('/appointment/:clientid',isAuth.loginTrainer,  trainerController.specificAppointment);
+
+
 router.get('/mynote',isAuth.loginTrainer,  trainerController.myNote);
+router.get('/note/:clientid',isAuth.loginTrainer,  trainerController.specificNote);
 
 
 

@@ -12,7 +12,7 @@ router.use('/js', express.static(path.join('node_modules/bootstrap/dist/js')))
 
 
 
-router.get('/login', isAuth.loginUser, clientController.getLogin);
+router.get('/login', isAuth, clientController.getLogin);
 router.post('/login', clientController.postLogin);
 
 
@@ -37,7 +37,7 @@ router.post('/appointment',  clientController.postAppointment);
 
 
 router.get('/sign-up',isAuth.loginUser, clientController.getSignup);
-router.get('/registered',isAuth, clientController.getProfile);
+router.get('/registered',isAuth.loginUser, clientController.getProfile);
 
 
 

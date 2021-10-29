@@ -131,13 +131,27 @@ exports.getProfile = (req, res, next) => {
 
 
 exports.getDashboard = (req, res, next) => {
- 
 
-      res.render('trainer/dashboard', {
-        trainer: req.session.trainer,
-        pageTitle: 'My Account',
-        path: '/trainer/account',
-      });
+  //working on it
+
+
+  Appointment.find({trainer: req.trainer._id}).countDocuments().then(appcount=>{
+  Enroll.find({trainer: req.trainer._id}).countDocuments()
+    .then(result=>{
+      const earnings=result * 200 + (appcount * 50);
+          res.render('trainer/dashboard', {
+            trainer: req.session.trainer,
+            pageTitle: 'My Account',
+            path: '/trainer/account',
+            enrollcount:result,
+            earnings:earnings,
+            appcount:appcount
+          });
+    })
+})
+   
+
+    
 };
 
 
@@ -148,6 +162,7 @@ exports.myclient = (req, res, next) => {
     res.render('trainer/myclient', {
       pageTitle: 'My Client',
       path: '/trainer/myclient',
+      trainer: req.session.trainer,
       users:user
     });
   });
@@ -158,13 +173,32 @@ exports.myAppointment = (req, res, next) => {
   Appointment.find({'trainer': req.trainer._id}).populate('user')
   .then(myappointment=>{
     res.render('trainer/myAppointment', {
-      pageTitle: 'My Client',
+      pageTitle: 'My Appointment',
       path: '/trainer/myappointment',
+      trainer: req.session.trainer,
       myappointments:myappointment,
     });
 });
+};
 
 
+
+exports.specificAppointment = (req, res, next) => {
+  const clientid = req.params.clientid;
+
+  Appointment.find({'trainer': req.trainer._id, 'user':clientid}).populate('user')
+  .then(myappointment=>{
+
+    const clientNames=myappointment.map(x => x.user[0].fname);
+    console.log(clientNames, clientid);
+    res.render('trainer/specificappointment', {
+      pageTitle: 'My Appointment',
+      path: '/trainer/appointment',
+      trainer: req.session.trainer,
+      myappointments:myappointment,
+      clientName: clientNames
+    });
+});
 };
 
 
@@ -176,18 +210,38 @@ exports.myNote = (req, res, next) => {
   res.render('trainer/myNote', {
     pageTitle: 'My Note',
     path: '/trainer/mynote',
+    trainer: req.session.trainer,
     note:notes
   });
 });
-
-
 };
+
+
+exports.specificNote = (req, res, next) => {
+  const clientid = req.params.clientid;
+
+  Note.find({'trainer': req.trainer._id, 'user':clientid}).populate('user')
+  .then(mynote=>{
+
+    const clientNames=mynote.map(x => x.user[0].fname);
+   
+    res.render('trainer/specificnote', {
+      pageTitle: 'Note',
+      path: '/trainer/note',
+      trainer: req.session.trainer,
+      mynotes:mynote,
+      clientName: clientNames
+    });
+});
+};
+
 
 
 
 exports.mytrainings = (req, res, next) => {
     res.render('trainer/trainings', {
       pageTitle: 'My Trainings',
+      trainer: req.session.trainer,
       path: '/trainer/mytrainings',
   });
 };
@@ -256,7 +310,7 @@ exports.postLogin = (req, res, next) => {
 
             if(trainer.ulevel==="trainer"){ 
                 req.session.isLoggedIn = true;
-                req.session.istrainer= 'trainer';
+                req.session.isUser= 'trainer';
                 req.session.trainer = trainer;
                 
                 return req.session.save(err => {
