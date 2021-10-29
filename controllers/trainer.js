@@ -140,7 +140,7 @@ exports.getDashboard = (req, res, next) => {
     .then(result=>{
       const earnings=result * 200 + (appcount * 50);
           res.render('trainer/dashboard', {
-            trainer: req.session.trainer,
+            trainers: req.session.trainer,
             pageTitle: 'My Account',
             path: '/trainer/account',
             enrollcount:result,
@@ -162,7 +162,7 @@ exports.myclient = (req, res, next) => {
     res.render('trainer/myclient', {
       pageTitle: 'My Client',
       path: '/trainer/myclient',
-      trainer: req.session.trainer,
+      trainers: req.session.trainer,
       users:user
     });
   });
@@ -175,7 +175,7 @@ exports.myAppointment = (req, res, next) => {
     res.render('trainer/myAppointment', {
       pageTitle: 'My Appointment',
       path: '/trainer/myappointment',
-      trainer: req.session.trainer,
+      trainers: req.session.trainer,
       myappointments:myappointment,
     });
 });
@@ -194,7 +194,7 @@ exports.specificAppointment = (req, res, next) => {
     res.render('trainer/specificappointment', {
       pageTitle: 'My Appointment',
       path: '/trainer/appointment',
-      trainer: req.session.trainer,
+      trainers: req.session.trainer,
       myappointments:myappointment,
       clientName: clientNames
     });
@@ -210,7 +210,7 @@ exports.myNote = (req, res, next) => {
   res.render('trainer/myNote', {
     pageTitle: 'My Note',
     path: '/trainer/mynote',
-    trainer: req.session.trainer,
+    trainers: req.session.trainer,
     note:notes
   });
 });
@@ -228,7 +228,7 @@ exports.specificNote = (req, res, next) => {
     res.render('trainer/specificnote', {
       pageTitle: 'Note',
       path: '/trainer/note',
-      trainer: req.session.trainer,
+      trainers: req.session.trainer,
       mynotes:mynote,
       clientName: clientNames
     });

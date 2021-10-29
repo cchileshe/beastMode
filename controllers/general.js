@@ -13,3 +13,11 @@ exports.getIndex = (req, res, next) => {
     path: '/'
   });
 };
+
+
+exports.findTrainer = (req, res, next) => {
+  res.render('beast/findtrainer', {
+    pageTitle: 'Find Trainers',
+    path: '/findtrainer'
+  });
+};

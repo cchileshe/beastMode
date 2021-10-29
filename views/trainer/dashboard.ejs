@@ -7,12 +7,12 @@
       <section>
  
       <div class="row">
-        <%- include('../includes/clientnav.ejs', {trainername:user.fname}) %>
+        <%- include('../includes/trainernav.ejs', {trainername:trainers.fname}) %>
 
           <!-- END SIDE BAR -->
         <div class="col-xl-8 main-dashboard">
           
-          <h1>welcome back <%= trainer.fname %> </h1>
+          <h1>welcome back <%= trainers.fname %> </h1>
           <div class="row">
             <div class="col-6 col-md-4">
               <div class="card" style="width: 18rem;">
