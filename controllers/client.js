@@ -355,7 +355,8 @@ exports.mytrainer = (req, res, next) => {
     res.render('client/mytrainer', {
       pageTitle: 'My Trainers List',
       path: '/user/mytrainer',
-      trainer:trainers
+      trainer:trainers,
+      user:req.user
     });
   });
 };
@@ -363,16 +364,18 @@ exports.mytrainer = (req, res, next) => {
 exports.trainings = (req, res, next) => {
   res.render('client/mytrainings', {
     pageTitle: 'View Trainings',
-    path: '/user/mytrainings'
+    path: '/user/mytrainings',
+    user:req.user
    });
 
 };
 
 
-exports.appointment = (req, res, next) => {
-  res.render('client/appointment', {
-    pageTitle: 'Make Appointment',
-    path: '/user/appointment'
+exports.getappointment = (req, res, next) => {
+  res.render('client/myappointment', {
+    pageTitle: 'Appointment List',
+    path: '/user/myappointment',
+    user:req.user
    });
 
 };
@@ -380,7 +383,8 @@ exports.appointment = (req, res, next) => {
 exports.sendNote = (req, res, next) => {
   res.render('client/appointment', {
     pageTitle: 'Make Appointment',
-    path: '/user/appointment'
+    path: '/user/appointment',
+    user:req.user
    });
 
 };
@@ -395,7 +399,8 @@ exports.trainings = (req, res, next) => {
       res.render('client/mytrainings', {
         pageTitle: 'View Trainings',
         path: '/user/mytrainings',
-        trainers:trainer
+        trainers:trainer,
+        user:req.user
       });
   });
 
@@ -408,7 +413,8 @@ exports.appointment = (req, res, next) => {
     res.render('client/appointment', {
       pageTitle: 'Make Appointment',
       path: '/user/appointment',
-      trainers:trainer
+      trainers:trainer,
+      user:req.user
     });
   });
 
@@ -439,7 +445,8 @@ exports.sendNote = (req, res, next) => {
     res.render('client/sendnote', {
       pageTitle: 'Send A note',
       path: '/user/send-note',
-      trainers:trainer
+      trainers:trainer,
+      user:req.user
     });
   });
 
@@ -475,7 +482,8 @@ exports.trainerList = (req, res, next) => {
       pageTitle: 'List of Trainers',
       path: '/user/trainer-list',
       trainers:trainer,
-      trainersMark:enrolled
+      trainersMark:enrolled,
+      user:req.user
      });
 
   });

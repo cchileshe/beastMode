@@ -30,6 +30,8 @@ router.get('/send-note/:trainerid',isAuth.loginUser,  clientController.sendNote)
 router.post('/send-note',  clientController.postSendNote);
 
 
+
+router.get('/myappointment',isAuth.loginUser,  clientController.getappointment);
 router.get('/appointment/:trainerid',isAuth.loginUser,  clientController.appointment);
 router.post('/appointment',  clientController.postAppointment);
 
