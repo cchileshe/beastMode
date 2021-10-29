@@ -137,7 +137,7 @@ exports.postEnroll= (req, res, next) => {
     .then(result => {
       // console.log('hey');
       // console.log(result);
-      res.redirect('/user/trainer-list');
+      res.redirect('/user/account');
     })
     .catch(err => {
       const error = new Error(err);
@@ -402,17 +402,6 @@ exports.trainings = (req, res, next) => {
 };
 
 
-
-exports.trainings = (req, res, next) => {
-
-  Trainer.find({'_id':req.params.trainerid})
-  .then(trainer => {
-      res.render('client/mytrainings', {
-        pageTitle: 'View Trainings',
-        path: '/user/mytrainings',
-        trainers:trainer
-      });
-    
 exports.appointment = (req, res, next) => {
   Trainer.find({'_id':req.params.trainerid})
   .then(trainer => {
@@ -425,17 +414,6 @@ exports.appointment = (req, res, next) => {
 
 };
 
-
-
-exports.appointment = (req, res, next) => {
-  Trainer.find({'_id':req.params.trainerid})
-  .then(trainer => {
-    res.render('client/appointment', {
-      pageTitle: 'Make Appointment',
-      path: '/user/appointment',
-      trainers:trainer
-    });
-  });
 
 exports.postAppointment = (req, res, next) => {
  
@@ -501,6 +479,6 @@ exports.trainerList = (req, res, next) => {
      });
 
   });
-})
 
+})
 };
