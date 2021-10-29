@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %>
+
+
+<body>
+  
+
+    <main>
+        <%- include('../includes/trainernav.ejs', {trainername:trainer.fname}) %>
+
+    <section>
+            
+            <% if(mynotes.length===0){%>
+                <h3>No Note Receive</h3>
+            <% }else{%>
+
+                <div class="container mb-3">
+                    <h1>Note from <%= clientName[0] %></h1>
+                 </div>
+             
+                <% for (note of mynotes) { %>
+
+                   
+                <%= note.subject %>
+                <br>
+                <%= note.message %>
+                <br>
+                
+                Send by <%= note.user[0].fname %>
+                
+                    <br>
+                    <br>
+
+                <% } %>
+        <% } %>
+        
+         
+
+    </section>
+    </main>
+
+
+
+
+<%- include('../includes/footer.ejs') %>
