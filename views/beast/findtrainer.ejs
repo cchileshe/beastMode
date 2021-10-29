@@ -9,23 +9,36 @@
 
     <main>
         
-    <header>
+        <header>
         <section class="hero-banner">
             <%- include('../includes/nav.ejs') %>
-                <div class="hero-banner-container">
-                    <div class="hero-banner-content">
-                        <h2>unlesh the <br>
-                        <span class="highlight">beast</span> within
-                        </h2>
-                        <br>
-                        <hr>
-                        <p class="highlightText">Start now and get a <span class="hightlight2"> free session </span> on your account.</p>
-                    </div>
-                </div>    
+                  
         </section>
-    </header>
+     </header>
 
-    
+     <section>
+
+
+
+         <% if(trainer.length==0){ %>
+            <h3>No Trainer yet</h3>
+        <% }else{ %>
+            <h3> Trainers </h3>
+            <% for (trainers of trainer) { %>
+                    <div class="row mb-3 container">
+                        <div class="card">
+                            <%= trainers.fname %> <%= trainers.lname %>
+                            <br>
+                            <%= trainers.email %>
+                            <br>
+                            <%= trainers.address %>
+                            
+                        </div>
+                    </div>
+            <% } %>
+        <% } %>
+     </section>
+
 
 
     </main>

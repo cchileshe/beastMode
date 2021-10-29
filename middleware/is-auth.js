@@ -32,6 +32,10 @@ module.exports.loginTrainer = (req, res, next) => {
         if(req.session.isUser !="trainer"){
             return res.redirect('/');
         }
+    }else if(req.session.isLoggedIn){
+        if(req.session.isUser !="trainer"){
+            return res.redirect('/user/account');
+        }
     }
     next();
 }

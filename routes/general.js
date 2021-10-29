@@ -8,7 +8,7 @@ const adminController = require('../controllers/general');
 router.get('/', adminController.getIndex);
 
 
-router.get('/findtrainer', adminController.findTrainer);
+router.get('/find-trainer', adminController.findTrainer);
 
 router.post('/logout', adminController.postLogout);
 

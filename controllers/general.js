@@ -1,3 +1,5 @@
+const Trainer = require('../models/trainer');
+
 exports.postLogout = (req, res, next) => {
     req.session.destroy(err => {
         console.log(err);
@@ -16,8 +18,14 @@ exports.getIndex = (req, res, next) => {
 
 
 exports.findTrainer = (req, res, next) => {
-  res.render('beast/findtrainer', {
-    pageTitle: 'Find Trainers',
-    path: '/findtrainer'
-  });
+  Trainer.find()
+  .then(trainers => {
+        res.render('beast/findtrainer', {
+          pageTitle: 'Find Trainers',
+          path: '/find-trainer',
+          trainer:trainers,
+        });
+    });
+
+
 };

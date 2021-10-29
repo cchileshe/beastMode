@@ -243,6 +243,7 @@ exports.mytrainings = (req, res, next) => {
       pageTitle: 'My Trainings',
       trainer: req.session.trainer,
       path: '/trainer/mytrainings',
+      trainers: req.session.trainer
   });
 };
 
