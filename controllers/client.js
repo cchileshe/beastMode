@@ -137,7 +137,7 @@ exports.postEnroll= (req, res, next) => {
     .then(result => {
       // console.log('hey');
       // console.log(result);
-      res.redirect('/user/account');
+      res.redirect('/user/trainer-list');
     })
     .catch(err => {
       const error = new Error(err);

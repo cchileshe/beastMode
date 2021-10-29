@@ -1,0 +1,39 @@
+<%- include('../includes/head.ejs') %>
+
+
+<body>
+  
+
+    <main>
+        <%- include('../includes/trainernav.ejs', {trainername:trainer.fname}) %>
+
+    <section>
+            
+            <% if(myappointments.length===0){%>
+               
+     
+                <h3>No Appointment</h3>
+            <% }else{%>
+                 <div class="container mb-3">
+                    <h1>Appointment for <%= clientName[0] %></h1>
+                 </div>
+             
+                <% for (appointment of myappointments) { %>
+
+                    <%= appointment.appointment %>
+                    set by <%= appointment.user[0].fname %>
+                    <br>
+                    <br>
+
+                <% } %>
+        <% } %>
+        
+         
+
+    </section>
+    </main>
+
+
+
+
+<%- include('../includes/footer.ejs') %>

@@ -5,7 +5,7 @@
   
 
     <main>
-        <%- include('../includes/trainernav.ejs') %>
+        <%- include('../includes/trainernav.ejs', {trainername:trainer.fname}) %>
 
     <section>
             <div class="container mb-3">
@@ -14,18 +14,22 @@
 
 
              <!-- const allappointmentMarked = allappointment.map(x => x.userid); %> -->
-           
-             <% for (appointment of myappointments) { %>
+         
+             <% if(myappointments.length===0){%>
+                    <h3>No Appointment</h3>
+                <% }else{%>
+                 
+                    <% for (appointment of myappointments) { %>
 
-                <%= appointment.appointment %>
-              
-                
-                set by <%= appointment.user[0].fname %>
-                <br>
-                <br>
+                        <%= appointment.appointment %>
+                    
+                        
+                        set by <%= appointment.user[0].fname %>
+                        <br>
+                        <br>
 
+                    <% } %>
             <% } %>
-
 
 
 
