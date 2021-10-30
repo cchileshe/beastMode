@@ -5,12 +5,49 @@
   
 
     <main>
-        <%- include('../includes/trainernav.ejs', {trainername:trainers.fname}) %>
+        <section>
+            <div class="row">
+                <%- include('../includes/trainernav.ejs', {trainername:trainers.fname}) %>
 
-    <section>
-            <div class="container mb-3">
-               <h1>My Appointment</h1>
-            </div>
+                <div  class="col-xl-8 main-dashboard">
+                    <h1>your next appointment is with:</h1>
+                    <div class="row">
+                        <div class="col-6 col-md-4">
+                          <div class="card" style="width: 18rem;">
+                            <div class="card-body"" style="min-height: 172px;">
+                              <h5 class="card-title">Mila Kunis</h5>
+                              <p class="card-text">
+                                
+                                  <a href="/trainer/myappointment" class="btn btn-secondary">manage</a>
+                
+            
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                          <div class="card" style="width: 18rem; min-height: 172px;">
+                            <div class="card-body"" style="min-height: 172px;">
+                              <h5 class="card-title">HIIT Training</h5>
+                              <p class="card-text">
+                                 
+                               
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="card" style="width: 18rem;">
+                          <div class="card-body"" style="min-height: 172px;">
+                            <h5 class="card-title">5pm</h5>
+                            <p class="card-text">
+                             
+                        
+                            </div>
+                          </div>
+                        </div>
+                        <hr>
+           
 
 
              <!-- const allappointmentMarked = allappointment.map(x => x.userid); %> -->
@@ -32,8 +69,17 @@
             <% } %>
 
 
+                </div>
 
-    </section>
+            </div>
+        </section>
+        
+
+    
+   
+               
+
+
     </main>
 
 
