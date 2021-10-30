@@ -12,6 +12,10 @@ section {
   color: #747e80;
 } */
 
+.heading {
+  padding-top: 13rem !important;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #9c8357!important;
@@ -46,10 +50,10 @@ section {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.hero-banner .container .mainlogo img {
+.hero-banner .container .mainlogo img, .hero-banner2 .container .mainlogo img  {
   max-height: 81px;
 }
-.hero-banner .container nav {
+.hero-banner .container nav, .hero-banner2 .container nav {
   text-align: right;
 }
 .main-nav nav ul {
@@ -60,7 +64,7 @@ section {
   display: inline-block;
   padding: 0 1em 0em 1em;
 }
-.hero-banner nav ul li a {
+.hero-banner nav ul li a, .hero-banner2 nav ul li a {
   
   font-weight: 300;
   letter-spacing: 0.1em;
@@ -69,7 +73,7 @@ section {
   color: #ffffff;
   font-size: 1.1em;
 }
-.hero-banner nav ul li a:hover {
+.hero-banner nav ul li a:hover, .hero-banner2 nav ul li a:hover  {
   border-bottom: 2px solid #555555;
   color: #9c8357;
 } 
@@ -99,50 +103,16 @@ a#getStarted {
   transition: border-radius 0.3s, opacity 0.3s;
   flex-direction: column;
 }
-
-/* .hero-banner .hero-banner-content {
-  max-width: 500px;
-  width: 100%;
-  text-transform: uppercase;
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-  margin-left: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  color: #ffffff;
-  /*background:linear-gradient(to right, rgba(255,255,255,0) 0, #e8c346 100%)
-}
-
-.hero-banner .hero-banner-content h2 {
-  text-align: left;
-  padding: .3em;
-  font-size: 2.5em;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
-}
-
-.signup {
+.hero-banner2 {
   display: flex;
-  flex-wrap: wrap;
+  height: 80vh;
+  background: url("/asset/beast.jpeg");
+  background-size: cover;
+  background-position: top;
+  transition: border-radius 0.3s, opacity 0.3s;
+  flex-direction: column;
 }
 
-.form-control {
-  display: grid;
-  border: none;
-  height: auto;
-}
-
-.form-control input {
-  margin-bottom: 1em;
-}
-
-.form-control button[type=submit] {
-  text-align: center;
-  width: 70%;
-  display: block;
-  margin: auto;
-} */
 
 /* ===========================
             hero form
