@@ -1,35 +1,44 @@
-<%- include('../includes/head.ejs') %>
-
-
+<%- include('../includes/trainerhead') %>
+<link rel="stylesheet" type="text/css" href="/css/trainer.css" />
+    
+</head>
 <body>
   
 
     <main>
-        <%- include('../includes/trainernav.ejs', {trainername:trainers.fname}) %>
+       
 
     <section>
+
+        <div class="row">
+
+            <%- include('../includes/trainernav.ejs', {trainername:trainers.fname}) %>
+        
             
             <% if(myappointments.length===0){%>
                
      
                 <h3>No Appointment</h3>
             <% }else{%>
+                <div class="flex-container">
                  <div class="container mb-3">
                     <h1>Appointment for <%= clientName[0] %></h1>
                  </div>
              
                 <% for (appointment of myappointments) { %>
 
-                    <%= appointment.appointment.toDateString() %>
-                    set by <%= appointment.user[0].fname %>
-                    <br>
-                    <br>
+                   
+                    <div class="card-flex">
+                        <span class="card-date"><%= appointment.appointment.toDateString() %></span>
+                        <span class="card-fname"><%= appointment.user[0].fname %></span>
+                  </div>
 
                 <% } %>
+            </div>
         <% } %>
         
          
-
+    </div> 
     </section>
     </main>
 

@@ -38,6 +38,7 @@
   margin: .5em;
   margin-bottom: 1em;
   text-align: center;
+  min-width: 300px;
 }
 
 .card-flex .card-date {
