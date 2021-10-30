@@ -5,24 +5,22 @@
   
 
     <main>
-        <%- include('../includes/clientnav.ejs', {username:user.fname}) %>
+       
    
 
 
     <section>
+        <div class="row">
+            <%- include('../includes/clientnav.ejs', {username:user.fname}) %>
+
+            <div  class="col-xl-8 main-dashboard">
  
-            <div class="container mb-3">
-               <h1>WELCOME to Trainer List </h1>
-            </div>
-
-            <ul>
-
-
-             
+           
+               <h1>My Trainers</h1>
+         
 
 
 
-            
               <!-- console.log('result is', trainersMarked )  -->
 
 
@@ -42,7 +40,7 @@
             <% } %>
 
             
-
+                </div>
 
     </section>
     </main>

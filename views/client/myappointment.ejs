@@ -5,19 +5,23 @@
   
 
     <main>
-        <%- include('../includes/clientnav.ejs', {username:user.fname}) %>
+        
    
 
 
+    
     <section>
- 
-            <div class="container mb-3">
-               <h1>WELCOME to Booked Session List </h1>
-            </div>
+        <div class="row">
+            <%- include('../includes/clientnav.ejs', {username:user.fname}) %>
 
+            <div  class="col-xl-8 main-dashboard">
+                <h1>My Sessions</h1>
+                <div class="row">
+ 
+     
 
             <% if(!appointments.length){ %>
-                <h3>No Appointment Made created</h3>
+                <h3>you have no scheduled sessions</h3>
             <% }else{ %>
               
                 <hr>
