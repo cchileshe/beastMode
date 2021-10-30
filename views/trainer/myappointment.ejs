@@ -15,13 +15,13 @@
 
              <!-- const allappointmentMarked = allappointment.map(x => x.userid); %> -->
          
-             <% if(myappointments.length===0){%>
+             <% if(!myappointments.length){%>
                     <h3>No Appointment</h3>
                 <% }else{%>
                  
                     <% for (appointment of myappointments) { %>
 
-                        <%= appointment.appointment %>
+                        <%= appointment.appointment.toDateString() %>
                     
                         
                         set by <%= appointment.user[0].fname %>

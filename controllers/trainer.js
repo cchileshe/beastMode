@@ -63,7 +63,7 @@ exports.updateAccount = (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    console.log("empty",errors.array());
+    // console.log("empty",errors.array());
     return res.status(422).render('trainer/signuptrainer', {
       pageTitle: 'Update Account',
       path: '/trainer/manage-account/account?edit=true',
@@ -170,8 +170,7 @@ exports.myclient = (req, res, next) => {
 
 
 exports.myAppointment = (req, res, next) => {
-  Appointment.find({'trainer': req.trainer._id}).populate('user')
-  .then(myappointment=>{
+  Appointment.find({'trainer': req.trainer._id}).populate('user').sort([['appointment', 'asc']]).then(myappointment=>{
     res.render('trainer/myAppointment', {
       pageTitle: 'My Appointment',
       path: '/trainer/myappointment',
@@ -186,11 +185,11 @@ exports.myAppointment = (req, res, next) => {
 exports.specificAppointment = (req, res, next) => {
   const clientid = req.params.clientid;
 
-  Appointment.find({'trainer': req.trainer._id, 'user':clientid}).populate('user')
+  Appointment.find({'trainer': req.trainer._id, 'user':clientid}).sort([['appointment', 'asc']]).populate('user')
   .then(myappointment=>{
 
     const clientNames=myappointment.map(x => x.user[0].fname);
-    console.log(clientNames, clientid);
+    // console.log(clientNames, clientid);
     res.render('trainer/specificappointment', {
       pageTitle: 'My Appointment',
       path: '/trainer/appointment',
@@ -264,7 +263,7 @@ exports.postTrainings = (req, res, next) => {
     const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    console.log("empty",errors.array());
+    // console.log("empty",errors.array());
     return res.status(422).render('trainer/signuptrainer', {
       pageTitle: 'Trainings',
       path: '/trainer/mytraining',
@@ -285,20 +284,7 @@ exports.postTrainings = (req, res, next) => {
     trainer:req.session.trainer
   });
   trainervid.save();
-
   res.redirect('/trainer/mytrainings');
-
-//   res.render('trainer/training', {
-//     pageTitle: 'My Trainings',
-//     trainer: req.session.trainer,
-//     path: '/trainer/mytrainings',
-//     trainers: req.session.trainer,
-//     validationErrors: [],
-//     errorMessage: null,
-//     hasError: false
-// });
-
-
 };
 
 
@@ -370,7 +356,7 @@ exports.postLogin = (req, res, next) => {
                 req.session.trainer = trainer;
                 
                 return req.session.save(err => {
-                  console.log(err);
+                  // console.log(err);
                   res.redirect('/trainer/account');
                 });
           }
@@ -388,7 +374,7 @@ exports.postLogin = (req, res, next) => {
           });
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
           res.redirect('/');
         });
     })
@@ -414,7 +400,7 @@ exports.postRegister = (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    console.log("empty",errors.array());
+    //console.log("empty",errors.array());
     return res.status(422).render('trainer/signuptrainer', {
       pageTitle: 'Sign Up',
       path: '/trainer/sign-up',
@@ -450,7 +436,7 @@ exports.postRegister = (req, res, next) => {
     })
     .catch(err => {
     
-      console.log(err);
+      // console.log(err);
     });
 
 
