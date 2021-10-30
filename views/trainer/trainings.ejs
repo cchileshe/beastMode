@@ -5,74 +5,86 @@
   
 
     <main>
-        <%- include('../includes/trainernav.ejs', {trainername:trainers.fname}) %>
+        
 
     <section>
-            <div class="container mb-3">
-               <h1>Trainings</h1>
+        <div class="row">
+            <%- include('../includes/trainernav.ejs', {trainername:trainers.fname}) %>
+
+            <div  class="col-xl-8 main-dashboard">
+                <form method="POST" action="/trainer/trainings">
+                    <h1>Trainings</h1>
+
+                    <div class="form-group row">
+                        <label for="title" class="col-form-label col-2">title</label>
+                        <div class="col-4">
+                                  <input 
+                                  type="text" 
+                                  class="form-control <%= validationErrors.find(e => e.param === 'title') ? 'invalid' : '' %>" 
+                                  name="title" 
+                                  id="title"
+                                  required="required"
+                                  value="<% if (hasError) { %><%= trainer.title %><% } %>"
+                                  >
+                              </div>        	
+                          </div>
+    
+                          <div class="form-group row">
+                            <label for="tlink" class="col-form-label col-2">Youtube Link</label>
+                            <div class="col-4">
+                                <input type="text"
+                                    pattern="http://www\.youtube\.com\/(.+)|https://www\.youtube\.com\/(.+)"
+                                      class="form-control <%= validationErrors.find(e => e.param === 'tlink') ? 'invalid' : '' %>" 
+                                      name="tlink" 
+                                      id="tlink"
+                                      placeholder="youtubelink"
+                                      required="required"
+                                      value="<% if (hasError) { %><%= trainer.tlink %><% } %>"
+                                      >
+                                  </div>        	
+                              </div>
+    
+                              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                              <button type="submit" class="btn btn-primary btn-lg">Add Training</button>
+    
+    
+                </form>
+
+                <div class="row" style="margin-top: 2em;">
+                    <% if(!trainvid.length){ %>
+                        <h3>No Videos created</h3>
+                    <% }else{ %>
+                      
+                        <hr>
+                        <% for (trainvids of trainvid) { %>
+                           
+                            <%= trainvids.title %>
+                            <%let tlink=trainvids.tlink;%>
+                            <%tlink=tlink.replace("https://www.youtube.com/watch?v=","")%>
+                            
+                            <br>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= tlink %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <br>
+                            <br>
+            
+                        <% } %>
+                    <% } %>
+                </div>
+        
             </div>
+            
+
+        </div>
+            
+              
+           
             
 
      
 
-            <form method="POST" action="/trainer/trainings">
-
-                <div class="form-group row">
-                    <label for="title" class="col-form-label col-2">title</label>
-                    <div class="col-4">
-                              <input 
-                              type="text" 
-                              class="form-control <%= validationErrors.find(e => e.param === 'title') ? 'invalid' : '' %>" 
-                              name="title" 
-                              id="title"
-                              required="required"
-                              value="<% if (hasError) { %><%= trainer.title %><% } %>"
-                              >
-                          </div>        	
-                      </div>
-
-                      <div class="form-group row">
-                        <label for="tlink" class="col-form-label col-2">Youtube Link</label>
-                        <div class="col-4">
-                            <input type="text"
-                                pattern="http://www\.youtube\.com\/(.+)|https://www\.youtube\.com\/(.+)"
-                                  class="form-control <%= validationErrors.find(e => e.param === 'tlink') ? 'invalid' : '' %>" 
-                                  name="tlink" 
-                                  id="tlink"
-                                  placeholder="youtubelink"
-                                  required="required"
-                                  value="<% if (hasError) { %><%= trainer.tlink %><% } %>"
-                                  >
-                              </div>        	
-                          </div>
-
-                          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                          <button type="submit" class="btn btn-primary btn-lg">Add Training</button>
-
-
-            </form>
-            
+           
           
-            <% if(!trainvid.length){ %>
-                <h3>No Videos created</h3>
-            <% }else{ %>
-              
-                <hr>
-                <% for (trainvids of trainvid) { %>
-                   
-                    <%= trainvids.title %>
-                    <%let tlink=trainvids.tlink;%>
-                    <%tlink=tlink.replace("https://www.youtube.com/watch?v=","")%>
-                    
-                    <br>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= tlink %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <br>
-                    <br>
-    
-                <% } %>
-            <% } %>
-    
-
+   
         
          
 
