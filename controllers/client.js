@@ -432,6 +432,17 @@ exports.trainings = (req, res, next) => {
         user:req.user,
         trainer:trainerName
       });
+    });
+  };
+
+exports.appointment = (req, res, next) => {
+  Trainer.find({'_id':req.params.trainerid})
+  .then(trainer => {
+    res.render('client/appointment', {
+      pageTitle: 'Make Appointment',
+      path: '/user/appointment',
+      trainers:trainer
+    });
   });
 
 };
@@ -453,9 +464,7 @@ exports.appointment = (req, res, next) => {
       user:req.user,
       trainerID:trainerid
   });
-});
 };
-
 
 exports.postAppointment = (req, res, next) => {
  
@@ -539,7 +548,8 @@ exports.trainerList = (req, res, next) => {
   Enroll.find({'user': req.user._id}).populate('trainer').then(enrolled=>{
   Trainer.find()
   .then(trainer => {
-    res.render('client/trainerList', {
+    res.render('client/trainerList', 
+    {
       pageTitle: 'List of Trainers',
       path: '/user/trainer-list',
       trainers:trainer,
