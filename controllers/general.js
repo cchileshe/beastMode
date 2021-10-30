@@ -51,7 +51,6 @@ exports.postContact = (req, res, next) => {
   const errors = validationResult(req);
 
 if (!errors.isEmpty()) {
-  // console.log("empty",errors.array());
   return res.status(422).render('/beast/contact-us', {
     pageTitle: 'Contact us',
     path: '/send',

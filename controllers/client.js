@@ -62,7 +62,7 @@ exports.updateAccount = (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    console.log("empty",errors.array());
+    // console.log("empty",errors.array());
     return res.status(422).render('client/signupClient', {
       pageTitle: 'Update Account',
       path: '/user/manage-account/account?edit=true',
@@ -413,14 +413,7 @@ exports.getappointment = (req, res, next) => {
 
 };
 
-exports.sendNote = (req, res, next) => {
-  res.render('client/appointment', {
-    pageTitle: 'Make Appointment',
-    path: '/user/appointment',
-    user:req.user
-   });
 
-};
 
 
 
@@ -445,16 +438,22 @@ exports.trainings = (req, res, next) => {
 
 
 exports.appointment = (req, res, next) => {
-  Trainer.find({'_id':req.params.trainerid})
-  .then(trainer => {
+
+
+  const trainerid=req.params.trainerid
+  Appointment.find({'user': req.user._id, 'trainer':req.params.trainerid})
+  .populate('trainer')
+  .sort([['appointment', 'asc']])
+  .then(appointment=>{
+    // console.log('hey',appointment)
     res.render('client/appointment', {
       pageTitle: 'Make Appointment',
       path: '/user/appointment',
-      trainers:trainer,
-      user:req.user
-    });
+      appointments:appointment,
+      user:req.user,
+      trainerID:trainerid
   });
-
+});
 };
 
 
@@ -462,16 +461,14 @@ exports.postAppointment = (req, res, next) => {
  
   const appt = req.body.appointment;
   const trainerId = req.body.trainerId;
-
   const appointment = new Appointment({
-    
     appointment:appt,
     user:req.user._id,
     trainer: trainerId
 
   });
   appointment.save();
-  res.redirect('/user/mytrainer');
+  res.redirect('/user/myappointment');
 };
 
 
@@ -483,21 +480,48 @@ exports.sendNote = (req, res, next) => {
       pageTitle: 'Send A note',
       path: '/user/send-note',
       trainers:trainer,
-      user:req.user
+      user:req.user,
+      errorMessage: null,
+      hasError: false,
+      hasSuccess:false,
+      validationErrors: []
     });
   });
 
 };
 
 exports.postSendNote = (req, res, next) => {
- 
+
+  
   const subject = req.body.subject;
-  const message = req.body.message;
+  const mymessage = req.body.message;
   const trainerId = req.body.trainerId;
+  const errors = validationResult(req);
+
+  // console.log('subject',subject);
+  // console.log('subject',mymessage);
+  // console.log('subject',trainerId);
+
+if (!errors.isEmpty()) {
+  console.log("empty",errors.array());
+  return res.status(422).render('client/sendnote', {
+    pageTitle: 'Send A note',
+    path: '/user/send-note/',
+    hasError: true,
+    user: {
+      subject:subject,
+      message:mymessage,
+      user:req.user,
+    },
+    errorMessage: errors.array()[0].msg,
+    validationErrors: errors.array()
+  });
+}
+
 
   const note = new Note({
     subject:subject,
-    message:message,
+    message:mymessage,
     user:req.user._id,
     trainer: trainerId,
   });

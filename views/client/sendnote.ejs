@@ -12,17 +12,35 @@
     <section>
  
             <div class="container mb-3">
-               <h1>Send Note to <%= trainers[0].fname %> <%= trainers[0].lname %> </h1>
+               
+               <h1>Send Note</h1>
+                
             </div>
 
+            <% if (errorMessage) { %>
+                <div class="message-error"><%= errorMessage %></div>
+            <% } %>
 
             <form action="/user/send-note" method="POST">
                 
-                <input type="text" name="subject">
-                <textarea name="message" cols="30" rows="5" placeholder="Message Here"></textarea>
+                <input type="text" name="subject" id="subject"
+                class="form-control <%= validationErrors.find(e => e.param === 'subject') ? 'invalid' : '' %>" 
+                required="required" placeholder="subject"
+                value="<% if (hasError) { %><%= user.subject %><% }%>"
+                >
+
+                
+                <textarea name="message" id="message" cols="30" rows="5" placeholder="Message Here"
+                class="form-control <%= validationErrors.find(e => e.param === 'subject') ? 'invalid' : '' %>" 
+                required="required" 
+                > <% if (hasError) { %><%= user.message %><% } %></textarea>
+
+
+
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <button class="btn" type="submit">Send</button>
-                <input type="hidden" name="trainerId" value="<%= trainers[0]._id %>">
+                <input type="hidden" name="trainerId" id="trainerId"
+                value="<% if (hasError) { %><%= user.subject %><% }else {%><%= trainers[0]._id %><%}%>">
             </form>
 
              

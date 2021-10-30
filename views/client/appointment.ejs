@@ -10,18 +10,33 @@
 
 
     <section>
- 
-            <div class="container mb-3">
-               <h1>Set appointment with  <%= trainers[0].fname %> <%= trainers[0].lname %> </h1>
-            </div>
-
-
+           
             <form action="/user/appointment" method="POST">
                 <input type="date" name="appointment">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <button class="btn" type="submit">Set Appointment</button>
-                <input type="hidden" name="trainerId" value="<%= trainers[0]._id %>">
+                <input type="hidden" name="trainerId" value="<%=trainerID%>">
             </form>
+            <hr>
+
+           
+               
+          
+            <% if(!appointments.length){ %>
+                <h3>No Appointment Made created</h3>
+            <% }else{ %>
+              
+            
+                <% for (trainerappointment of appointments) { %>
+                    
+                        <div class="card">
+                          <div class="row">
+                            Appointment:<%= trainerappointment.appointment.toDateString() %> with <%= trainerappointment.trainer[0].fname %>
+                          </div> 
+                    </div>
+                    
+                <% } %>
+            <% } %>
 
              
 

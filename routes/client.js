@@ -28,7 +28,19 @@ router.get('/mytrainer',isAuth.loginUser,  clientController.mytrainer);
 router.get('/trainings/:trainerid',isAuth.loginUser,  clientController.trainings);
 
 router.get('/send-note/:trainerid',isAuth.loginUser,  clientController.sendNote);
-router.post('/send-note',  clientController.postSendNote);
+
+router.post('/send-note', 
+[body('subject')
+.isString()
+.isLength({ min: 2 })
+.trim()
+.withMessage('Please enter your Subject'),
+body('message')
+.isString()
+.isLength({ min: 2 })
+.trim()
+.withMessage('Please enter Content')], 
+clientController.postSendNote);
 
 
 

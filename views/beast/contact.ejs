@@ -22,6 +22,10 @@
             <div class="success">Message sent successfully</div>
         <%}%>
 
+        <% if (errorMessage) { %>
+            <div class="message-error"><%= errorMessage %></div>
+        <% } %>
+
 
             <!-- temporary style -->
         <style>
