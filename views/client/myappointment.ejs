@@ -12,10 +12,25 @@
     <section>
  
             <div class="container mb-3">
-               <h1>WELCOME to Trainer List </h1>
+               <h1>WELCOME to Booked Session List </h1>
             </div>
 
-            <ul>
+
+            <% if(!appointments.length){ %>
+                <h3>No Appointment Made created</h3>
+            <% }else{ %>
+              
+                <hr>
+                <% for (appointments of appointments) { %>
+                    
+                        <div class="card">
+                          <div class="row">
+                            Appointment:<%= appointments.appointment.toDateString() %> with <%= appointments.trainer[0].fname %>
+                          </div> 
+                    </div>
+                    
+                <% } %>
+            <% } %>
 
 
              

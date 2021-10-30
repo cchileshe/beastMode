@@ -20,7 +20,7 @@
              
                 <% for (appointment of myappointments) { %>
 
-                    <%= appointment.appointment %>
+                    <%= appointment.appointment.toDateString() %>
                     set by <%= appointment.user[0].fname %>
                     <br>
                     <br>

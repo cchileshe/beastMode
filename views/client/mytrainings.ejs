@@ -13,10 +13,27 @@
  
             <div class="container mb-3">
               
-               <h1>WELCOME to <%= trainers[0].fname %> <%= trainers[0].lname %> Training Videos </h1>
+               <h1>WELCOME to <%= trainer[0] %>Training Videos </h1>
             </div>
 
-            <ul>
+            <% if(!trainvid.length){ %>
+                <h3>No Videos created</h3>
+            <% }else{ %>
+              
+                <hr>
+                <% for (trainvids of trainvid) { %>
+                   
+                    <%= trainvids.title %>
+                    <%let tlink=trainvids.tlink;%>
+                    <%tlink=tlink.replace("https://www.youtube.com/watch?v=","")%>
+                    
+                    <br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= tlink %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <br>
+                    <br>
+    
+                <% } %>
+            <% } %>
 
 
              

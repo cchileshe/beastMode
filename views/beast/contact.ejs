@@ -1,0 +1,81 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./js/bootstrap.min.js">
+<link rel="stylesheet" type="text/css" href="/css/main.min.css" />
+
+
+<body>
+  
+
+    <main>
+        
+        <header>
+        <section class="hero-banner">
+            <%- include('../includes/nav.ejs') %>
+                  
+        </section>
+     </header>
+
+     <section>
+        <h2>Leave us your Message</h2>
+        <% if (hasSuccess) { %>
+            <div class="success">Message sent successfully</div>
+        <%}%>
+
+
+            <!-- temporary style -->
+        <style>
+                .contactusform{
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    width: 100%;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .contactusform input, .contactusform textarea, .contactusform button{
+                    width: 80%;
+                    margin-bottom: .3em;
+                    align-items: center;
+                }
+        </style>
+
+
+        <form action="/send" method="POST" class="contactusform">
+            <input type="email" name="email" placeholder="email"
+            class="form-control <%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>" 
+            required="required"
+            value="<% if (hasError) { %><%= admin.email %><% } %>">
+
+            <input type="text" name="subject" placeholder="subject"
+            class="form-control <%= validationErrors.find(e => e.param === 'subject') ? 'invalid' : '' %>" 
+            required="required"
+            value="<% if (hasError) { %><%= admin.subject %><% } %>">
+
+
+
+            <textarea name="message" cols="30" rows="5" placeholder="Message Here"
+            class="form-control <%= validationErrors.find(e => e.param === 'subject') ? 'invalid' : '' %>" 
+            required="required"
+            >
+            <% if (hasError) { %><%= admin.message %><% } %>
+            </textarea>
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn btn-success" type="submit">Send</button>
+        </form>
+
+         
+
+
+     </section>
+
+
+
+    </main>
+
+
+
+
+
+<%- include('../includes/footer.ejs') %>

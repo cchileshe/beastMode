@@ -2,6 +2,7 @@ const User = require('../models/user');
 const Trainer = require('../models/trainer');
 const Enroll = require('../models/enroll');
 const Appointment = require('../models/appointment');
+const Trainingvid = require('../models/trainingvids');
 const Note=require('../models/note');
 
 
@@ -400,11 +401,15 @@ exports.trainers = (req, res, next) => {
 
 
 exports.getappointment = (req, res, next) => {
-  res.render('client/myappointment', {
-    pageTitle: 'Appointment List',
-    path: '/user/myappointment',
-    user:req.user
-   });
+  Appointment.find({'user': req.user._id}).populate('trainer').sort([['appointment', 'asc']]).then(appointment=>{
+    res.render('client/myappointment', {
+      pageTitle: 'Appointment List',
+      path: '/user/myappointment',
+      user:req.user,
+      appointments:appointment
+     });
+  })
+
 
 };
 
@@ -422,13 +427,17 @@ exports.sendNote = (req, res, next) => {
 
 
 exports.trainings = (req, res, next) => {
-  Trainer.find({'_id':req.params.trainerid})
-  .then(trainer => {
+  Trainingvid.find({'trainer': req.params.trainerid}).populate('trainer')
+  .then(trainervid => {
+    const trainerName=trainervid.map(x => x.trainer[0].fname);
+
+    // console.log(trainerName[0]);
       res.render('client/mytrainings', {
         pageTitle: 'View Trainings',
         path: '/user/mytrainings',
-        trainers:trainer,
-        user:req.user
+        trainvid:trainervid,
+        user:req.user,
+        trainer:trainerName
       });
   });
 

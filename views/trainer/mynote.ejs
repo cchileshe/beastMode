@@ -13,10 +13,11 @@
             </div>
 
 
-           
-        <% if(!note){ %>
-            <h3>No Client Enrolled</h3>
+      
+        <% if(!note.length.length){ %>
+            <h3>No Notes Receive</h3>
         <% }else{ %>
+   
             <% for (mynote of note) { %>
 
                 <%= mynote.subject %>
