@@ -1,42 +1,55 @@
-<%- include('../includes/head.ejs') %>
-
-
+<%- include('../includes/trainerhead') %>
+<link rel="stylesheet" type="text/css" href="/css/trainer.css" />
+    
+</head>
 <body>
-  
+    
 
     <main>
-        <%- include('../includes/trainernav.ejs', {trainername:trainers.fname}) %>
+
 
     <section>
-            <div class="container mb-3">
+        <div class="row">
+            <%- include('../includes/trainernav.ejs', {trainername:trainers.fname}) %>
+
+
+            <div  class="col-xl-8 main-dashboard">
                <h1>My Notes</h1>
-            </div>
+          
 
 
       
-        <% if(!note.length.length){ %>
+        <% if(!note.length){ %>
             <h3>No Notes Receive</h3>
         <% }else{ %>
-   
+            
+
+            <div class="flex-container">
+
             <% for (mynote of note) { %>
 
-                <%= mynote.subject %>
-                <br>
-                <%= mynote.message %>
-                <br>
+               
                 
-                Send by <%= mynote.user[0].fname %>
-                <br>
-                <br>
+
+                <div class="card-flex">
+                    <span class="card-date"><i>From</i> <%= mynote.user[0].fname %></span>
+                    <span class="card-Subject">
+                        <i><%= mynote.subject %></i><br>
+                        <%= mynote.message %>
+                    </span>
+              </div>
+
+                
+              
+               
 
             <% } %>
+        </div> 
+
         <% } %>
+    </div>
 
-
-
-           
-         
-
+    </div>
     </section>
     </main>
 

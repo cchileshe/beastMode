@@ -1,8 +1,9 @@
-<%- include('../includes/head.ejs') %>
-
-
+<%- include('../includes/trainerhead') %>
+<link rel="stylesheet" type="text/css" href="/css/trainer.css" />
+    
+</head>
 <body>
-  
+    
 
     <main>
         
@@ -50,24 +51,26 @@
     
                 </form>
 
-                <div class="row" style="margin-top: 2em;">
+                <div class="row-flex" style="margin-top: 2em;">
                     <% if(!trainvid.length){ %>
                         <h3>No Videos created</h3>
                     <% }else{ %>
                       
-                        <hr>
+
+                        
                         <% for (trainvids of trainvid) { %>
-                           
-                            <%= trainvids.title %>
+                            <div class="training-container">
+                            <div class="training_title"><%= trainvids.title %></div>
                             <%let tlink=trainvids.tlink;%>
                             <%tlink=tlink.replace("https://www.youtube.com/watch?v=","")%>
-                            
-                            <br>
+                           
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= tlink %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <br>
-                            <br>
-            
+                        </div> 
                         <% } %>
+
+                  
+
+
                     <% } %>
                 </div>
         

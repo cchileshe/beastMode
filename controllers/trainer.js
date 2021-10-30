@@ -206,6 +206,7 @@ exports.specificAppointment = (req, res, next) => {
 exports.myNote = (req, res, next) => {
   Note.find({'trainer': req.trainer._id}).populate('user')
   .then(notes=>{
+    console.log('notes here',req.trainer._id,notes);
   res.render('trainer/myNote', {
     pageTitle: 'My Note',
     path: '/trainer/mynote',
