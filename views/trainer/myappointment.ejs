@@ -1,7 +1,9 @@
-<%- include('../includes/head.ejs') %>
-
-
+<%- include('../includes/trainerhead') %>
+<link rel="stylesheet" type="text/css" href="/css/trainer.css" />
+    
+</head>
 <body>
+    
   
 
     <main>
@@ -12,41 +14,7 @@
                 <div  class="col-xl-8 main-dashboard">
                     <h1>your next appointment is with:</h1>
                     <div class="row">
-                        <div class="col-6 col-md-4">
-                          <div class="card" style="width: 18rem;">
-                            <div class="card-body"" style="min-height: 172px;">
-                              <h5 class="card-title">Mila Kunis</h5>
-                              <p class="card-text">
-                                
-                                  <a href="/trainer/myappointment" class="btn btn-secondary">manage</a>
-                
-            
-                              
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-6 col-md-4">
-                          <div class="card" style="width: 18rem; min-height: 172px;">
-                            <div class="card-body"" style="min-height: 172px;">
-                              <h5 class="card-title">HIIT Training</h5>
-                              <p class="card-text">
-                                 
-                               
-                              
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-6 col-md-4">
-                            <div class="card" style="width: 18rem;">
-                          <div class="card-body"" style="min-height: 172px;">
-                            <h5 class="card-title">5pm</h5>
-                            <p class="card-text">
-                             
-                        
-                            </div>
-                          </div>
-                        </div>
-                        <hr>
+                      
            
 
 
@@ -56,16 +24,18 @@
                     <h3>No Appointment</h3>
                 <% }else{%>
                  
+                  <div class="flex-container">
+
                     <% for (appointment of myappointments) { %>
-
-                        <%= appointment.appointment.toDateString() %>
-                    
-                        
-                        set by <%= appointment.user[0].fname %>
-                        <br>
-                        <br>
-
+                      
+                      
+                      <div class="card-flex">
+                            <span class="card-date"><%= appointment.appointment.toDateString() %></span>
+                            <span class="card-fname"><%= appointment.user[0].fname %></span>
+                      </div>
+                       
                     <% } %>
+                  </div> 
             <% } %>
 
 
