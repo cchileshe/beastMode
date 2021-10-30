@@ -1,5 +1,5 @@
 const Trainer = require('../models/trainer');
-const User = require('../models/user');
+const Trainingvid = require('../models/trainingvids');
 const Enroll = require('../models/enroll');
 const Appointment = require('../models/appointment');
 const Note = require('../models/note');
@@ -104,7 +104,7 @@ exports.updateAccount = (req, res, next) => {
           req.session.trainer=trainer;
       })
       .then(result=>{
-        console.log('UPDATED Account!');
+        // console.log('UPDATED Account!');
         res.redirect('/trainer/account');
       })
    
@@ -124,7 +124,7 @@ exports.updateAccount = (req, res, next) => {
 exports.getProfile = (req, res, next) => {
   res.render('trainer/profile', {
     pageTitle: 'Welcome',
-    path: '/trainer/registered',
+    path: '/trainer/account',
     
   });
 };
@@ -239,13 +239,68 @@ exports.specificNote = (req, res, next) => {
 
 
 exports.mytrainings = (req, res, next) => {
-    res.render('trainer/trainings', {
-      pageTitle: 'My Trainings',
-      trainer: req.session.trainer,
-      path: '/trainer/mytrainings',
-      trainers: req.session.trainer
-  });
+    //rioedit
+    Trainingvid.find({'trainer': req.trainer._id}).then(trainvids=>{  
+
+      res.render('trainer/trainings', {
+        pageTitle: 'My Trainings',
+        trainer: req.session.trainer,
+        path: '/trainer/mytrainings',
+        trainers: req.session.trainer,
+        validationErrors: [],
+        errorMessage: null,
+        hasError: false,
+        trainvid:trainvids
+    });
+  })
 };
+
+
+exports.postTrainings = (req, res, next) => {
+
+
+    const title = req.body.title;
+    const tlink = req.body.tlink;
+    const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    console.log("empty",errors.array());
+    return res.status(422).render('trainer/signuptrainer', {
+      pageTitle: 'Trainings',
+      path: '/trainer/mytraining',
+      hasError: true,
+      trainer: {
+        title: title,
+        tlink: tlink,
+        trainer:req.session.trainer
+      },
+      errorMessage: errors.array()[0].msg,
+      validationErrors: errors.array()
+    });
+  }
+
+  const trainervid= new Trainingvid({
+    title: title,
+    tlink: tlink,
+    trainer:req.session.trainer
+  });
+  trainervid.save();
+
+  res.redirect('/trainer/mytrainings');
+
+//   res.render('trainer/training', {
+//     pageTitle: 'My Trainings',
+//     trainer: req.session.trainer,
+//     path: '/trainer/mytrainings',
+//     trainers: req.session.trainer,
+//     validationErrors: [],
+//     errorMessage: null,
+//     hasError: false
+// });
+
+
+};
+
 
 
 

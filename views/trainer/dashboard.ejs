@@ -12,14 +12,20 @@
           <!-- END SIDE BAR -->
         <div class="col-xl-8 main-dashboard">
           
-          <h1>welcome back <%= trainers.fname %> </h1>
+          <h1>Dashboard</h1>
           <div class="row">
             <div class="col-6 col-md-4">
               <div class="card" style="width: 18rem;">
                 <div class="card-body">
                   <h5 class="card-title">Appointments</h5>
-                  <p class="card-text"><%= appcount %></p>
-                  <a href="#" class="btn btn-secondary">manage</a>
+                  <p class="card-text"><%if(appcount===0){%>-<%}else{%><%= appcount %><%}%></p>
+                  <%if(enrollcount===0){%>
+                    <a href="#" class="btn btn-secondary" disabled>manage</a>
+                    <%}else{%>
+                      <a href="/trainer/myappointment" class="btn btn-secondary">manage</a>
+                    <%}%>
+
+                  
                 </div>
               </div>
             </div>
@@ -27,16 +33,29 @@
               <div class="card" style="width: 18rem;">
                 <div class="card-body">
                   <h5 class="card-title">Earnings</h5>
-                  <p class="card-text">$<%= earnings %></p>
-                  <a href="#" class="btn btn-secondary">view</a>
+                  <p class="card-text"><%if(earnings===0){%>-<%}else{%>$<%= earnings %><%}%></p>
+
+                  <%if(enrollcount===0){%>
+                    <a href="#" class="btn btn-secondary" disabled>view</a>
+                    <%}else{%>
+                      <a href="#" class="btn btn-secondary">view</a>
+                    <%}%>
+                  
                 </div>
               </div>
             </div>
             <div class="col-6 col-md-4"><div class="card" style="width: 18rem;">
               <div class="card-body">
                 <h5 class="card-title">Subscriptions</h5>
-                <p class="card-text"><%= enrollcount %></p>
-                <a href="#" class="btn btn-secondary">manage</a>
+                <p class="card-text"><%if(enrollcount===0){%>-<%}else{%><%= enrollcount %><%}%></p>
+
+                  <%if(enrollcount===0){%>
+                  <a href="#" class="btn btn-secondary" disabled>manage</a>
+                  <%}else{%>
+                  <a href="/trainer/myclient" class="btn btn-secondary">manage</a>
+                  <%}%>
+                
+
               </div>
             </div>
             

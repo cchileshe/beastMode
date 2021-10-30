@@ -32,8 +32,6 @@ exports.manageAccount = (req, res, next) => {
   const editMode = req.query.edit;
   const clientid = req.params.clientid;
 
-
-
   if (req.session.isLoggedIn) {
           res.render('client/signupClient', {
             pageTitle: 'Update Client',
@@ -105,7 +103,7 @@ exports.updateAccount = (req, res, next) => {
           req.session.user=user;
       })
       .then(result=>{
-        console.log('UPDATED Account!');
+        // console.log('UPDATED Account!');
         res.redirect('/user/account');
       })
    
@@ -178,7 +176,7 @@ exports.postUnenroll = (req, res, next) => {
 exports.getProfile = (req, res, next) => {
   res.render('client/profile', {
     pageTitle: 'Welcome',
-    path: '/user/registered',
+    path: '/user/login',
     
   });
 };
@@ -205,7 +203,7 @@ exports.getDashboard = (req, res, next) => {
         path: '/user/account',
         billing:billings,
         appcount:appcount,
-        trainername:trainerList[0]+'...'
+        trainername:trainerList
       });
       });
     
@@ -360,7 +358,7 @@ exports.postRegister = (req, res, next) => {
     .then(result => {
       // console.log(result);
       console.log('User Registered');
-      res.redirect('/user/registered');
+      res.redirect('/user/account');
     })
     .catch(err => {
       const error = new Error(err);
@@ -383,14 +381,22 @@ exports.mytrainer = (req, res, next) => {
   });
 };
 
-exports.trainings = (req, res, next) => {
-  res.render('client/mytrainings', {
-    pageTitle: 'View Trainings',
-    path: '/user/mytrainings',
-    user:req.user
-   });
+
+exports.trainers = (req, res, next) => {
+
+  Trainer.findOne({'_id':req.params.trainerid})
+  .then(trainer => {
+      res.render('client/trainerprofile', {
+        pageTitle: 'View Profile',
+        path: '/user/trainers',
+        trainers:trainer,
+        user:req.user
+      });
+  });
 
 };
+
+
 
 
 exports.getappointment = (req, res, next) => {

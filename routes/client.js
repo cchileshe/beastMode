@@ -23,6 +23,7 @@ router.post('/unenroll', clientController.postUnenroll);
 
 
 
+router.get('/trainers/:trainerid',isAuth.loginUser,  clientController.trainers);
 router.get('/mytrainer',isAuth.loginUser,  clientController.mytrainer);
 router.get('/trainings/:trainerid',isAuth.loginUser,  clientController.trainings);
 
@@ -36,7 +37,7 @@ router.get('/appointment/:trainerid',isAuth.loginUser,  clientController.appoint
 router.post('/appointment',  clientController.postAppointment);
 
 
-router.get('/sign-up',isAuth.loginUser, clientController.getSignup);
+router.get('/sign-up',isAuth, clientController.getSignup);
 router.get('/registered',isAuth.loginUser, clientController.getProfile);
 
 

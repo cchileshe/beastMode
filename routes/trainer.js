@@ -26,7 +26,26 @@ router.get('/registered',isAuth, trainerController.getProfile);
 
 router.get('/myclient',isAuth.loginTrainer,  trainerController.myclient);
 router.get('/myappointment',isAuth.loginTrainer,  trainerController.myAppointment);
+
 router.get('/mytrainings',isAuth.loginTrainer,  trainerController.mytrainings);
+
+
+router.post('/trainings', [
+  body('title')
+      .isString()
+      .isLength({ min: 2 })
+      .trim()
+      .withMessage('Please enter First Name'),
+  body('tlink')
+      .isString()
+      .isLength({ min: 1 })
+      .trim()
+      .withMessage('Please enter URL')
+    ],trainerController.postTrainings);
+
+
+
+
 
 router.get('/appointment/:clientid',isAuth.loginTrainer,  trainerController.specificAppointment);
 

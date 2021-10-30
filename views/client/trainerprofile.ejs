@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs') %>
+
+
+<body>
+  
+
+    <main>
+        <%- include('../includes/clientnav.ejs', {username:user.fname}) %>
+   
+
+
+    <section>
+ 
+            <div class="container mb-3">
+               <h1>WELCOME to Trainer's Profile</h1>
+            </div>
+
+            
+            <div class="container">
+                    <div class="row">Name: <%= trainers.fname %></div>
+                    <div class="row">Last Name: <%= trainers.lname %></div>
+                    <div class="row">Address: <%= trainers.address %></div>
+                    <div class="row">Email: <%= trainers.email %></div>
+            </div>
+
+            
+
+
+              
+
+    </section>
+    </main>
+
+
+
+
+<%- include('../includes/footer.ejs') %>

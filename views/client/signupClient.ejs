@@ -6,7 +6,6 @@
         <header>
         <section class="hero-banner">
             <%- include('../includes/nav.ejs') %>
-            <h1>Client Sign-up</h1>
         </section>
     </header>
 
@@ -15,11 +14,16 @@
         <% if (errorMessage) { %>
           <div class="message-error"><%= errorMessage %></div>
       <% } %>
-        <form action="/user/registered" method="POST" class="form-horizontal">
+        <form action="/user/<% if (editing) { %>account<% } else { %>registered<% } %>" method="POST" class="form-horizontal">
           
             <div class="row">
               <div class="col-4">
-            <h2>Sign Up</h2>
+                <% if (!editing) { %>
+                  <h2>Sign Up</h2>
+              <% }else{%>
+                <h2>Update Information</h2> 
+              <%}%>
+          
           </div>	
             </div>			
             <div class="form-group row">
@@ -30,7 +34,7 @@
                     class="form-control <%= validationErrors.find(e => e.param === 'fname') ? 'invalid' : '' %>" 
                     name="fname" 
                     id="fname"
-                    value="<% if (hasError) { %><%= user.fname %><% } %>"
+                    value="<% if (hasError) { %><%= user.fname %><% } else if (editing) { %><%= user.fname %><% } %>"
                     required="required">
                 </div>        	
             </div>
@@ -43,7 +47,7 @@
                     class="form-control <%= validationErrors.find(e => e.param === 'fname') ? 'invalid' : '' %>" 
                     name="lname" 
                     id="lname"
-                    value="<% if (hasError) { %><%= user.lname %><% } %>"
+                    value="<% if (hasError) { %><%= user.lname %><% } else if (editing) { %><%= user.lname %><% }%>"
                     required="required">
                 </div>        	
             </div>
@@ -57,8 +61,7 @@
                         class="form-control <%= validationErrors.find(e => e.param === 'address') ? 'invalid' : '' %>" 
                         name="address" 
                         id="address"
-                        value="<% if (hasError) { %><%= user.address %><% } %>"
-                        >
+                        value="<% if (hasError) { %><%= user.address %><% } else if (editing) { %><%= user.address %><% } %>">
                     </div>        	
                 </div>
 
@@ -70,15 +73,16 @@
                     class="form-control <%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>" 
                     name="email" 
                     id="email"
-                    value="<% if (hasError) { %><%= user.email %><% } %>"
-                    required="required">
+                    required="required"
+                    value="<% if (hasError) { %><%= user.email %><% } else if (editing) { %><%= user.email %><% } %>">
+                    
                 </div>        	
             </div>
         <div class="form-group row">
           <label for="password" class="col-form-label col-2">Password</label>
           <div class="col-4">
                     <input 
-                    type="text" 
+                    type="password" 
                     class="form-control <%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>" 
                     name="password" 
                     id="password"
@@ -91,7 +95,7 @@
           <label for="password" class="col-form-label col-2">Confirm Password</label>
           <div class="col-4">
                     <input 
-                    type="text" 
+                    type="password" 
                     class="form-control <%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>" 
                     name="confirmPassword" 
                     id="confirmPassword"
@@ -101,9 +105,16 @@
             </div>
         <div class="form-group row">
           <div class="col-8">
+
+            <% if (!editing) { %>
             <p><label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>.</label></p>
+            <% }%>
+            
+            <% if (editing) { %>
+              <input type="hidden" value="<%= user._id %>" name="userId">
+          <% } %>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <button type="submit" class="btn btn-primary btn-lg">sign up</button>
+            <button type="submit" class="btn btn-primary btn-lg"><% if (editing) { %>update<% } else { %>sign Up<% } %></button>
           </div>  
         </div>		      
         </form>
