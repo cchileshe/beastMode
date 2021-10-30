@@ -17,15 +17,7 @@
      </header>
 
      <section>
-        <h2>Leave us your Message</h2>
-        <% if (hasSuccess) { %>
-            <div class="success">Message sent successfully</div>
-        <%}%>
-
-        <% if (errorMessage) { %>
-            <div class="message-error"><%= errorMessage %></div>
-        <% } %>
-
+       
 
             <!-- temporary style -->
         <style>
@@ -46,6 +38,15 @@
 
 
         <form action="/send" method="POST" class="contactusform">
+            <h2>Leave us your Message</h2>
+            <% if (hasSuccess) { %>
+                <div class="success">Message sent successfully</div>
+            <%}%>
+    
+            <% if (errorMessage) { %>
+                <div class="message-error"><%= errorMessage %></div>
+            <% } %>
+    
             <input type="email" name="email" placeholder="email"
             class="form-control <%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>" 
             required="required"
@@ -66,7 +67,7 @@
             </textarea>
 
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <button class="btn btn-success" type="submit">Send</button>
+            <button class="btn-primary btn-success" type="submit">Send</button>
         </form>
 
          
