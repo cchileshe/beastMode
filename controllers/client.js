@@ -464,6 +464,7 @@ exports.appointment = (req, res, next) => {
       user:req.user,
       trainerID:trainerid
   });
+});
 };
 
 exports.postAppointment = (req, res, next) => {
