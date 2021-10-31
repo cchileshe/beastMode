@@ -1,20 +1,25 @@
-<%- include('../includes/head.ejs') %>
-
-
+<%- include('../includes/clienthead') %>
+<link rel="stylesheet" type="text/css" href="/css/trainer.css" />
+    
+</head>
 <body>
   
 
     <main>
-        <%- include('../includes/clientnav.ejs', {username:user.fname}) %>
+        
    
 
 
     <section>
+        <div class="row">
+            <%- include('../includes/clientnav.ejs', {username:user.fname}) %>
+
+        
  
-            <div class="container mb-3">
+            <div  class="col-xl-8 main-dashboard">
               
                <h1>WELCOME to <%= trainer[0] %>Training Videos </h1>
-            </div>
+      
 
             <% if(!trainvid.length){ %>
                 <h3>No Videos created</h3>
@@ -40,8 +45,8 @@
 
 
 
-
-
+        </div>
+        </div>
     </section>
     </main>
 
