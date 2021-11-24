@@ -59,4 +59,17 @@
   flex-direction: column;
   margin-bottom: 30px;
 }
+
+.client-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  margin-bottom: .5em;
+}
+
+.client-grid .client-row-grid {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr auto;
+  align-items: center;
+}
 /*# sourceMappingURL=trainer.css.map */

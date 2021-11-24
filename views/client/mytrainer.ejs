@@ -1,8 +1,9 @@
-<%- include('../includes/head.ejs') %>
-
-
+<%- include('../includes/clienthead') %>
+<link rel="stylesheet" type="text/css" href="/css/trainer.css" />
+    
+</head>
 <body>
-  
+    
 
     <main>
        
@@ -25,22 +26,26 @@
 
 
               <% for (trainers of trainer) { %>
-                <%= trainers.trainer[0].fname %>
-                    <div class="card">
-                        <div class="row">
-                            <a href="/user/trainers/<%= trainers.trainer[0]._id %>">View Profile</a>
-                            <a href="/user/trainings/<%= trainers.trainer[0]._id %>">View Trainings</a>
-                             <a href="/user/appointment/<%= trainers.trainer[0]._id %>">Set Appointment</a>
+
+                <div class="client-grid">
+
+                    <div class="client-row-grid">  
+                <%= trainers.trainer[0].fname %>  <%= trainers.trainer[0].lname %>
+                    </div>
+
+                    <div class="event">
+                            <a href="/user/trainers/<%= trainers.trainer[0]._id %>">View Profile</a> |
+                            <a href="/user/trainings/<%= trainers.trainer[0]._id %>">View Trainings</a> |
+                             <a href="/user/appointment/<%= trainers.trainer[0]._id %>">Set Appointment</a> |
                              <a href="/user/send-note/<%= trainers.trainer[0]._id %>">Send a Note</a>
 
                         </div>
-                    </div>
-                    
-                    <div class="divider"></div>
+             </div> 
+                  
             <% } %>
 
             
-                </div>
+                
 
     </section>
     </main>

@@ -1,16 +1,22 @@
-<%- include('../includes/head.ejs') %>
-
-
+<%- include('../includes/trainerhead') %>
+<link rel="stylesheet" type="text/css" href="/css/trainer.css" />
+    
+</head>
 <body>
-  
+    
 
     <main>
-        <%- include('../includes/clientnav.ejs', {username:user.fname}) %>
-   
-
-
     <section>
+        <div class="row">
+        <%- include('../includes/clientnav.ejs', {username:user.fname}) %>
            
+
+    
+     
+        <div  class="col-xl-8 main-dashboard">
+
+            <h2>Set Appointment</h2>
+            <hr>
             <form action="/user/appointment" method="POST">
                 <input type="date" name="appointment">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -29,12 +35,10 @@
             
                 <% for (trainerappointment of appointments) { %>
                     
-                        <div class="card">
-                          <div class="row">
+                    <div class="row">
                             Appointment:<%= trainerappointment.appointment.toDateString() %> with <%= trainerappointment.trainer[0].fname %>
-                          </div> 
-                    </div>
-                    
+                     
+                        </div>
                 <% } %>
             <% } %>
 
@@ -42,8 +46,8 @@
 
 
 
-
-
+        </div>
+        </div>
     </section>
     </main>
 
